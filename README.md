@@ -12,7 +12,7 @@ RPS is an implementation of the popular hand-game, Rock; Paper; Scissors. Utiliz
 
 #### In addition, this project will include: 
 * modular instructions 
-* excting background music 
+* exciting background music 
 
 
 ## Wireframe
