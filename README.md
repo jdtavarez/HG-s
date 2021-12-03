@@ -8,7 +8,7 @@ RPS is an implementation of the popular hand-game, Rock; Paper; Scissors. Utiliz
 #### In *RPS*, users will be able to: 
 * track their hand movements with a handpose recognition AI
 * input three different gestures, via their camera 
-* play a game of rock, paper, scissors with the computer, whose moves will appear in an on-screen animation
+* play a game of rock, paper, scissors with a computer player, whose moves will appear in an on-screen animation
 * choose between a single match, best out of three, and best out of five format
 * pause the game between rounds
 * see the flow of the game and their choices in an end of game round-up
