@@ -2,11 +2,21 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <script src="https://www.unpkg.com/@tensorflow/tfjs-core@3.11.0/dist/tf-core.js"></script>
+    <script src="https://www.unpkg.com/@tensorflow/tfjs-converter@3.11.0/dist/tf-converter.js"></script>
+    <script src="https://www.unpkg.com/@tensorflow/tfjs-backend-webgl@3.11.0/dist/tf-backend-webgl.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/hand-pose-detection"></script>
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="./main.js"></script>
-    <title>Document</title>
+    <link rel="stylesheet" href="./index.css">
+    <title>RPS</title>
 </head>
 <body>
-    
+    <div class="container">
+        <video autoplay id="stream"></video>
+        <div id="side-bar"></div>
+    </div>
 </body>
 </html>

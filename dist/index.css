@@ -1,0 +1,12 @@
+#side-bar {
+    border: solid black 1px;
+    height: 300px;
+    width: 100px;
+    align-self: center;
+}
+
+#videoEl {
+    height: 300px;
+    width: 480px;
+    align-self: center;
+}
