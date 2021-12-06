@@ -1,5 +1,4 @@
 class Handposition {
-
     constructor(results) {
         this.positions = results.multiHandLandmarks[0];
         this.handed = results.multiHandedness[0].label === 'Right' ? 'Left' : 'Right'
@@ -48,13 +47,15 @@ class Handposition {
         let pointTwo;
 
         // camera is mirrored so x axis increases from right towards the left
-        if (this.handed === 'Right' && this.axis === 'x') {
+        if (hand.handed === 'Right' && hand.axis === 'x') {
             [pointOne, pointTwo] = [1, 3];
         } else {
             [pointOne, pointTwo] = [3, 1];
         }
 
         // thumb position is generally orthogonal to hand
+        // preserving value of pointOne & pointTwo is unnecessary, so they can
+        // be reset as needed; 
         function fifthOpen() {
             const fifthAxis = (hand.axis !== 'y' ? 'y' : 'x')
             if (hand.handed === 'Right' && hand.axis === 'x') {
@@ -67,7 +68,9 @@ class Handposition {
         }
 
         fingers.forEach((e, i) => {
-            const openBool = e[pointOne][`${hand.axis}`] < e[pointTwo][`${hand.axis}`];
+            const openBool = 
+            e[pointOne][`${hand.axis}`] < e[pointTwo][`${hand.axis}`];
+
             if (i === 0) {
                 hand.fingers['firstOpen'] = openBool;
             } else if (i === 1) {
@@ -117,5 +120,4 @@ class Handposition {
 
         return pose;
     };
-
 };
