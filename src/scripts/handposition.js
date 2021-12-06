@@ -8,81 +8,114 @@ class Handposition {
             firstOpen: undefined,
             secondOpen: undefined,
             thirdOpen: undefined,
-            fourthOpen: undefined
+            fourthOpen: undefined,
+            fifthOpen: undefined
         };
         this.fingersIsOpen();
         this.pose = this.pose();
     };
 
+
     // hand position will determine conditions for evaulating overall pose
     handAxisXYZ() {
         const palmBase = this.positions[0];
-        const secondKnuckle = this.positions[9];
+        const secondFingerTip = this.positions[9];
 
-        let dist = new Map();
-        dist.set(Math.abs(palmBase.x - secondKnuckle.x), 'x');
-        dist.set(Math.abs(palmBase.y - secondKnuckle.y), 'y');
-        dist.set(Math.abs(palmBase.z - secondKnuckle.z), 'z');
+        let axisDistances = new Map();
+        axisDistances.set(Math.abs(palmBase.x - secondFingerTip.x), 'x');
+        axisDistances.set(Math.abs(palmBase.y - secondFingerTip.y), 'y');
+        axisDistances.set(Math.abs(palmBase.z - secondFingerTip.z), 'z');
 
-        const distArray = Array.from(dist.keys());
-        const maxDist = Math.max(...distArray);
+        const distancesArray = Array.from(axisDistances.keys());
+        const maxDistance = Math.max(...distancesArray);
 
-        return dist.get(maxDist);
+        return axisDistances.get(maxDistance);
     };
 
+
     fingersIsOpen() {
-        const ctx = this;
+        const hand = this;
+
         const first = this.positions.slice(5, 9);
         const second = this.positions.slice(9, 13);
         const third = this.positions.slice(13, 17);
         const fourth = this.positions.slice(17, 21);
+        const fifth = this.positions.slice(1, 5);
 
-        const fingers = [first, second, third, fourth];
+        const fingers = [first, second, third, fourth, fifth];
 
-        let a;
-        let b;
+        let pointOne;
+        let pointTwo;
 
-        if (this.handed === 'Left' && this.axis === 'x') {
-            [a, b] = [1, 3];
+        // camera is mirrored so x axis increases from right towards the left
+        if (this.handed === 'Right' && this.axis === 'x') {
+            [pointOne, pointTwo] = [1, 3];
         } else {
-            [a, b] = [3, 1];
+            [pointOne, pointTwo] = [3, 1];
+        }
+
+        // thumb position is generally orthogonal to hand
+        function fifthOpen() {
+            const fifthAxis = (hand.axis !== 'y' ? 'y' : 'x')
+            if (hand.handed === 'Right' && hand.axis === 'x') {
+                [pointOne, pointTwo] = [2, 3];
+            } else {
+                [pointOne, pointTwo] = [3, 2];
+            }
+            const fifthBool = fifth[pointOne][fifthAxis] < fifth[pointTwo][fifthAxis];
+            return fifthBool;
         }
 
         fingers.forEach((e, i) => {
-            const position = e[a][`${ctx.axis}`] < e[b][`${ctx.axis}`];
+            const openBool = e[pointOne][`${hand.axis}`] < e[pointTwo][`${hand.axis}`];
             if (i === 0) {
-                ctx.fingers['firstOpen'] = position;
+                hand.fingers['firstOpen'] = openBool;
             } else if (i === 1) {
-                ctx.fingers['secondOpen'] = position;
+                hand.fingers['secondOpen'] = openBool;
             } else if (i === 2) {
-                ctx.fingers['thirdOpen'] = position;
+                hand.fingers['thirdOpen'] = openBool;
+            } else if (i === 3) {
+                hand.fingers['fourthOpen'] = openBool;
             } else {
-                ctx.fingers['fourthOpen'] = position;
+                hand.fingers['fifthOpen'] = fifthOpen();
             }
         })
     };
 
+
     pose() {
-        if (this.fingers['firstOpen']
-            && this.fingers['secondOpen']
-            && this.fingers['thirdOpen']
-            && this.fingers['fourthOpen']) {
-            return 'paper';
-        } else if (this.fingers['firstOpen']
-            && this.fingers['secondOpen']
-            && !this.fingers['thirdOpen']
-            && !this.fingers['fourthOpen']) {
-            return 'scissors';
-        } else if (!this.fingers['firstOpen']
+        let pose;
+
+        const rock = (!this.fingers['firstOpen']
             && !this.fingers['secondOpen']
             && !this.fingers['thirdOpen']
-            && !this.fingers['fourthOpen']) {
-            return 'rock';
-        } else {
-            return 'unsure';
-        }
+            && !this.fingers['fourthOpen']
+            && !this.fingers['fifthOpen']);
+
+        const paper = (this.fingers['firstOpen']
+            && this.fingers['secondOpen']
+            && this.fingers['thirdOpen']
+            && this.fingers['fourthOpen']
+            && this.fingers['fifthOpen']);
+
+
+        const scissors = (this.fingers['firstOpen']
+            && this.fingers['secondOpen']
+            && !this.fingers['thirdOpen']
+            && !this.fingers['fourthOpen']
+            && !this.fingers['fifthOpen'])
+            || (this.fingers['firstOpen']
+            && !this.fingers['secondOpen']
+            && !this.fingers['thirdOpen']
+            && !this.fingers['fourthOpen']
+            && this.fingers['fifthOpen']);
+
+        if (rock) { pose = 'rock' }
+        else if (paper) { pose = 'paper' }
+        else if (scissors) { pose = 'scissors' }
+        else { pose = 'unsure' }
+
+        return pose;
     };
+
 };
-
-
-export default { Handposition };

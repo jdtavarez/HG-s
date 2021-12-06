@@ -1,4 +1,20 @@
+.container {
+    display: flex;
+    justify-content: space-around;
+}
+
+video {
+    width: 1280;
+    height: 720;
+}
+
 canvas {
     -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
+    width: 640;
+    height: 360;
+}
+
+.hand-info {
+    border: 1px solid black;
 }
