@@ -10,6 +10,9 @@ const config = {
         path: path.join(__dirname, 'dist'), // bundled file in dist/
         filename: '[name].js',
     },
+    experiments: {
+        topLevelAwait: true
+    },
     module: {
         rules: [
             {
