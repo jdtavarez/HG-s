@@ -52,32 +52,20 @@ class Handposition {
         }
 
         let ctx = this
-        debugger
 
         fingers.forEach((e, i) => {
             const position = e[a][`${ctx.axis}`] < e[b][`${ctx.axis}`];
-            debugger;
-            switch (e) {
-                case (i === 0): {
-                    ctx.fingers['firstOpen'] = position;
-                    debugger;
-                }
-                case (i === 1): {
-                    ctx.fingers['secondOpen'] = position;
-                    debugger;
-                }
-                case (i === 2): {
-                    ctx.fingers['thirdOpen'] = position;
-                    debugger;
-                }
-                case (i === 3): {
-                    ctx.fingers['fourthOpen'] = position;
-                    debugger;
-                }
-            };
+            if (i === 0) {
+                ctx.fingers['firstOpen'] = position;
+            } else if (i === 1) {
+                ctx.fingers['secondOpen'] = position;
+            } else if (i === 2) {
+                ctx.fingers['thirdOpen'] = position;
+            } else {
+                ctx.fingers['fourthOpen'] = position;
+            }
         })
     };
-
 };
 
 export default { Handposition };
