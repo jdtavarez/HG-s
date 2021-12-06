@@ -3,38 +3,35 @@ class Handposition {
     constructor(results) {
         this.positions = results.multiHandLandmarks[0];
         this.handed = results.multiHandedness[0].label === 'Right' ? 'Left' : 'Right'
-        this.orientation = this.horizontalVertical();
+        this.axis = this.handAxisXYZ();
         this.fingers = {
             firstOpen: undefined,
             secondOpen: undefined,
             thirdOpen: undefined,
             fourthOpen: undefined
         };
-        this.isOpen();
-        this.pose = undefined;
+        this.fingersIsOpen();
+        this.pose = this.pose();
     };
 
     // hand position will determine conditions for evaulating overall pose
-    horizontalVertical() {
-        const firstKnuckleHeight = this.positions[5].y;
-        const secondKnuckleHeight = this.positions[9].y;
-        const thirdKnuckleHeight = this.positions[13].y;
-        const fourthKnuckleHeight = this.positions[17].y;
+    handAxisXYZ() {
+        const palmBase = this.positions[0];
+        const secondKnuckle = this.positions[9];
 
-        const knuckleHeights = firstKnuckleHeight + secondKnuckleHeight + thirdKnuckleHeight + fourthKnuckleHeight
+        let dist = new Map();
+        dist.set(Math.abs(palmBase.x - secondKnuckle.x), 'x');
+        dist.set(Math.abs(palmBase.y - secondKnuckle.y), 'y');
+        dist.set(Math.abs(palmBase.z - secondKnuckle.z), 'z');
 
-        // if knuckleHeights/fourthKnuckleHeight ~= 4, then the knuckles are at the same y coordinate 
-        const constraint = knuckleHeights / fourthKnuckleHeight
-        if (Math.round(constraint) === 4) {
-            this.axis = 'y';
-            return 'vertical'
-        } else {
-            this.axis = 'x';
-            return 'horizontal'
-        }
+        const distArray = Array.from(dist.keys());
+        const maxDist = Math.max(...distArray);
+
+        return dist.get(maxDist);
     };
 
-    isOpen() {
+    fingersIsOpen() {
+        const ctx = this;
         const first = this.positions.slice(5, 9);
         const second = this.positions.slice(9, 13);
         const third = this.positions.slice(13, 17);
@@ -51,7 +48,6 @@ class Handposition {
             [a, b] = [3, 1]
         }
 
-        let ctx = this
 
         fingers.forEach((e, i) => {
             const position = e[a][`${ctx.axis}`] < e[b][`${ctx.axis}`];
@@ -65,6 +61,27 @@ class Handposition {
                 ctx.fingers['fourthOpen'] = position;
             }
         })
+    };
+
+    pose() {
+        if (this.fingers['firstOpen']
+            && this.fingers['secondOpen']
+            && this.fingers['thirdOpen']
+            && this.fingers['fourthOpen']) {
+            return 'paper';
+        } else if (this.fingers['firstOpen']
+            && this.fingers['secondOpen']
+            && !this.fingers['thirdOpen']
+            && !this.fingers['fourthOpen']) {
+            return 'scissors';
+        } else if (!this.fingers['firstOpen']
+            && !this.fingers['secondOpen']
+            && !this.fingers['thirdOpen']
+            && !this.fingers['fourthOpen']) {
+            return 'rock';
+        } else {
+            return 'unsure';
+        }
     };
 };
 

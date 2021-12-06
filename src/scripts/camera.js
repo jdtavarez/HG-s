@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     hands.setOptions({
-        maxNumHands: 2,
+        maxNumHands: 1,
         modelComplexity: 0,
         minDetectionConfidence: 0.5,
         minTrackingConfidence: 0.5
@@ -24,7 +24,6 @@ document.addEventListener("DOMContentLoaded", () => {
         canvasCtx.drawImage(results.image, 0, 0, canvas.width, canvas.height);
         if (results.multiHandLandmarks) {
             let handposition = new Handposition(results);
-            debugger
             for (const landmarks of results.multiHandLandmarks) {
                 drawConnectors(canvasCtx, landmarks, HAND_CONNECTIONS,
                     { color: '#00A36C', lineWidth: 5 });
@@ -32,6 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
         canvasCtx.restore();
+        debugger
     };
     
     hands.onResults(onResults);
