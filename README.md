@@ -51,4 +51,3 @@ RPS is an implementation of the popular hand-game, Rock; Paper; Scissors. Utiliz
 ## Bonus Features 
 * Include different versions of the game (e.g. <a href="https://en.wikipedia.org/wiki/Sansukumi-ken">mushi-ken, et al.</a>)
 * Include different rule sets (e.g. <a href="https://en.wikipedia.org/wiki/Muk-jji-ppa">muk-jji-ppa</a>)
->>>>>>> 6a1e0d37cac955f2c75cd14abe37e928d3f2c8e7
