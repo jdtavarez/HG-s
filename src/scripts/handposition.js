@@ -121,3 +121,5 @@ class Handposition {
         return pose;
     };
 };
+
+export { Handposition }

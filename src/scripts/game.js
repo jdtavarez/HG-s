@@ -1,5 +1,4 @@
 class Game {
-    
     constructor(rounds, modelResults) {
         this.rounds = rounds;
         this.roundNum = 1;
@@ -79,5 +78,4 @@ class Game {
         }
         this.gameWinner(this.roundResults);
     }
-
 }
