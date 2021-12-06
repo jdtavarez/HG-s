@@ -43,11 +43,10 @@ class Handposition {
         let b;
 
         if (this.handed === 'Left' && this.axis === 'x') {
-            [a, b] = [1, 3]
+            [a, b] = [1, 3];
         } else {
-            [a, b] = [3, 1]
+            [a, b] = [3, 1];
         }
-
 
         fingers.forEach((e, i) => {
             const position = e[a][`${ctx.axis}`] < e[b][`${ctx.axis}`];
@@ -84,5 +83,6 @@ class Handposition {
         }
     };
 };
+
 
 export default { Handposition };

@@ -24,7 +24,7 @@ RPS is an implementation of the popular hand-game, Rock; Paper; Scissors. Utiliz
 ## Technologies, Libraries, & APIs
 * Javascript
 * HTML/CSS
-* Tensorflow.js
+* MediaPipe
 * Canvas
 * Webpack
 
