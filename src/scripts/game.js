@@ -1,53 +1,53 @@
+import { HumanPlayer } from './human_player'
+import { ComputerPlayer } from './computer_player'
+
 class Game {
     constructor(rounds, modelResults) {
-        this.rounds = rounds;
+        this.totalRounds = rounds;
+        this.handInfo = modelResults;
         this.roundNum = 1;
-        this.roundResults = [];
-        this.gameOver.bind(this);
-        this.players = [
-            p1 = new HumanPlayer(modelResults),
-            p2 = new ComputerPlayer(modelResults)
-            ];
-        this.gameRollUp = new Map();
+
+        const p1 = new HumanPlayer(); 
+        const p2 = new ComputerPlayer();
+        this.players = [p1, p2];
+        this.rollUp = new Map();
+
+        this.over.bind(this);
+        this.getMoves.bind(this);
     }
 
     getMoves() {
-        moves = new Map();
+        let moves = new Map();
         moves.set('draw', 'draw');
         this.players.forEach((player) => {
-            moves.set(player, player.giveMove());
+            moves.set(player.giveMove(this.handInfo), player);
         })
         return moves;
     }
 
     judgeRound(playerMoves) {
-        const moves = Array.from(playerMoves.keys()).sort();
-        let roundWinner;
+        const moves = Array.from(playerMoves.keys()).sort(); 
+        let winningMove;
 
-        if (moves[0] === 'rock' && moves[1] === 'scissors') {
-            roundWinner = 'rock';
-        } else if (moves[0] === 'paper' && moves[1] === 'rock') {
-            roundWinner = 'paper';
-        } else if (moves[0] === 'paper' && moves[1] === 'scissors') {
-            roundWinner = 'scissors';
+        if (moves[1] === 'rock' && moves[2] === 'scissors') {
+            winningMove = 'rock';
+        } else if (moves[1] === 'paper' && moves[2] === 'rock') {
+            winningMove = 'paper';
+        } else if (moves[1] === 'paper' && moves[2] === 'scissors') {
+            winningMove = 'scissors';
         } else {
-            roundWinner = 'draw';
+            winningMove = 'draw';
         }
-        
-        this.roundResults.push(playerMoves[roundWinner]);
+
+        const roundWinner = playerMoves.get(winningMove);
+        this.rollUp.set(this.roundNum, [playerMoves, roundWinner]);
+        this.roundNum++
     }
 
-    keepScore(round, playerMoves) {
-        const winner = this.roundResults[-1];
-        this.gameRollUp.set(round, [playerMoves, winner])
-    }
+    winner() {
+        let p1Count = 0; let p2Count = 0; let gWinner;
 
-    gameWinner(roundResults) {
-        let p1Count = 0;
-        let p2Count = 0;
-        let gWinner;
-
-        roundResults.forEach((result) => {
+        this.roundResults.forEach((result) => {
             if (result instanceof HumanPlayer) {
                 p1Count++;
             } else {
@@ -62,20 +62,10 @@ class Game {
         } else {
             gWinner = 'Draw'
         }
-        
         return gWinner;
     }
 
-    gameOver() {
-        this.roundResults.length === this.rounds;
-    }
-
-    run() {
-        while (!this.gameOver) {
-            const playerMoves = getMoves();
-            this.judgeRound(playerMoves);
-            this.keepScore(this.roundNum, playerMoves);
-        }
-        this.gameWinner(this.roundResults);
-    }
+    over = () => this.roundNum >= this.totalRounds
 }
+
+export { Game }

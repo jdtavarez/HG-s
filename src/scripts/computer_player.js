@@ -1,10 +1,12 @@
 class ComputerPlayer {
-    constructor(_modelResults) {
-        this.moves = ['rock', 'paper', 'scissors']
+    constructor() {
     };
 
-    giveMove() {
-        moveIndex = Math.floor(Math.random() * this.moves.length);
-        return this.moves[moveIndex];
+    giveMove(_modelResults) {
+        const possibleMoves = ['rock', 'paper', 'scissors']
+        const idx = Math.floor(Math.random() * possibleMoves.length);
+        return possibleMoves[idx];
     };
 }
+
+export { ComputerPlayer }

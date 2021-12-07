@@ -1,3 +1,5 @@
+import { Calculator } from './calculator'
+
 class Handposition {
     constructor(results) {
         this.positions = results.multiHandLandmarks[0];
@@ -11,7 +13,8 @@ class Handposition {
             fifthOpen: undefined
         };
         this.fingersIsOpen();
-        this.pose = this.pose();
+        this.poseSelector.bind(this)
+        this.pose = this.poseSelector();
     };
 
 
@@ -54,17 +57,22 @@ class Handposition {
         }
 
         // thumb position is generally orthogonal to hand
-        // preserving value of pointOne & pointTwo is unnecessary, so they can
-        // be reset as needed; 
         function fifthOpen() {
-            const fifthAxis = (hand.axis !== 'y' ? 'y' : 'x')
-            if (hand.handed === 'Right' && hand.axis === 'x') {
-                [pointOne, pointTwo] = [2, 3];
-            } else {
-                [pointOne, pointTwo] = [3, 2];
-            }
-            const fifthBool = fifth[pointOne][fifthAxis] < fifth[pointTwo][fifthAxis];
-            return fifthBool;
+            
+            const palmBase = hand.positions[0];
+            const fifthMetacarpal = fifth[1];
+            const fifthDistal = fifth[3];
+
+            const fifthAngle = Calculator.angle(
+                palmBase,
+                fifthMetacarpal,
+                fifthDistal
+            );
+
+            // trial and error value :(
+            const openBool = fifthAngle > 2.78;
+            
+            return openBool;
         }
 
         fingers.forEach((e, i) => {
@@ -86,7 +94,7 @@ class Handposition {
     };
 
 
-    pose() {
+    poseSelector() {
         let pose;
 
         const rock = (!this.fingers['firstOpen']
@@ -120,6 +128,7 @@ class Handposition {
 
         return pose;
     };
+
 };
 
 export { Handposition }

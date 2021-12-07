@@ -1,4 +1,6 @@
-import { hands } from './hand_model'
+import { hands } from './hand_rec_model'
+
+let handInfo;
 
 function videoCallback() {
     const canvas = document.getElementById('stream-overlay');
@@ -18,6 +20,7 @@ function videoCallback() {
             }
         }
         canvasCtx.restore();
+        handInfo = results;
     };
 
     hands.onResults(onResults);
@@ -32,4 +35,4 @@ function videoCallback() {
     camera.start();
 }
 
-export { videoCallback }
+export { videoCallback, handInfo }

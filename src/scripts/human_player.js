@@ -1,9 +1,13 @@
+import { Handposition } from './handposition'
 class HumanPlayer {
-    constructor(modelResults) {
-        this.handposition = new Handposition(modelResults);
+
+    constructor() {
     };
 
-    giveMove() {
-        return this.handposition.pose;
+    giveMove(modelResults) {
+        const move = new Handposition(modelResults);
+        return move.pose;
     };
 }
+
+export { HumanPlayer }
