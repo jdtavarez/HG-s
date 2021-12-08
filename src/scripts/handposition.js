@@ -70,7 +70,7 @@ class Handposition {
             );
 
             // trial and error value :(
-            const openBool = fifthAngle > 2.78;
+            const openBool = fifthAngle > 2.7;
             
             return openBool;
         }

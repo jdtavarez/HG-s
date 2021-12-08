@@ -12,6 +12,8 @@ document.addEventListener("click", (e) => {
         let game = new Game(1, handInfo);
         let playerMoves = game.getMoves();
         game.judgeRound(playerMoves);
+        console.log(game.rollUp)
+        console.log(game.winner())
         if (game.over()) {
             let ul = document.createElement('UL')
             let li = document.createElement('LI')

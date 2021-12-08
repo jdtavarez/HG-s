@@ -4,6 +4,8 @@ import { ComputerPlayer } from './computer_player'
 class Game {
     constructor(rounds, modelResults) {
         this.totalRounds = rounds;
+        this.roundResults = [];
+        
         this.handInfo = modelResults;
         this.roundNum = 1;
 
@@ -40,6 +42,7 @@ class Game {
         }
 
         const roundWinner = playerMoves.get(winningMove);
+        this.roundResults.push(roundWinner);
         this.rollUp.set(this.roundNum, [playerMoves, roundWinner]);
         this.roundNum++
     }

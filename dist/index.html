@@ -3,27 +3,79 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+        <link rel="stylesheet" href="./reset.css">
         <link rel="stylesheet" href="./index.css">
         <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
         <script src="./main.js"></script>
-        <title>RPS</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400&family=Nunito:ital,wght@0,400;0,600;0,900;1,300;1,600;1,900&display=swap"
+            rel="stylesheet">
     </head>
     <body>
         <header>
-            <h1>RPS</h1>
-        </header>
-        <div class="container">
-            <video autoplay hidden id="stream"></video>
-            <canvas id="stream-overlay"></canvas>
-            <div class="mini-container">
-                <button id="button">hand info</button>
-                <ul class="hand-info"></ul>
+            <nav>
+                <h1 id='logo'>HandGame/s</h1>
+                <div class="links-container">
+                    <a id="github-link" href="https://github.com/jdtavarez/rps"><img id="github-logo" src="../src/images/github/GitHub-Mark-120px-plus.png" alt="GitHub Mark"></a>
+                    <!-- <a href="">linkedin</a>
+                    <a href="">demo mode</a> -->
+                </div>
+                <div class="game-tools">
+                    <button class="game" id="one-round" value="1">1 ROUND</button>
+                    <button class="game" id="three-round" value="3">3 ROUNDS</button>
+                    <button class="game" id="five-round" value="5">5 ROUNDS</button>
+                </div>
+            </nav>
+            <div class="game-util">
+                <div id="score">score</div>
             </div>
-        </div>
-        <button id="game">new game</button>
+        </header>
+        <main>
+            <section class="video-container">
+                <video autoplay hidden id="stream"></video>
+                <canvas id="stream-overlay"></canvas>
+            </section>
+            <section class="side-info">
+                <div id="history">
+                    <h3 class="history-heading">history</h3>
+                    <p></p>
+                </div>
+                <ul id="graphics">
+                    <li class="hand-graphic-list">
+                        <h3 class="hand-graphic-list-heading">how-to play</h3>
+                    </li>
+                    <li class="hand-graphic-list">
+                        <img src="../src/images/poses/rock_graphic.png" alt="a 3d wireframe of the rock position in rock paper scissors game" class="hand-graphic">
+                        <ul>
+                            <h3 class="hand-graphic-heading">rock</h3>
+                            <li class="hand-graphic-text">Clasp fingers, pointing towards palm.</li>
+                        </ul>
+                    </li>
+                    <li class="hand-graphic-list">
+                        <img src="../src/images/poses/paper_graphic.png"  alt="a 3d wireframe of the paper position in rock paper scissors game" class="hand-graphic">
+                        <ul>
+                            <h3 class="hand-graphic-heading">paper</h3>
+                            <li class="hand-graphic-text"> Raise hand and point all fingers away from palm.</li>
+                        </ul>
+                    </li>
+                    <li class="hand-graphic-list">
+                        <img src="../src/images/poses/scissors_graphic.png"  alt="a 3d wireframe of the scissors position in rock paper scissors game" class="hand-graphic"> 
+                        <ul class="hand-graphic-list-dir">
+                            <h3 class="hand-graphic-heading">scissors</h3>
+                            <li class="hand-graphic-text">Clasp thumb, ring, and pinky fingers.</li>
+                            <li class="hand-graphic-text">Leave index and middle fingers open.</li>
+                            <li class="hand-graphic-text">Alternatively, point the thumb and index, and close the other fingers.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+        </main>
     </body>
 </html>
