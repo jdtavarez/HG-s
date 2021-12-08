@@ -21,20 +21,28 @@
     <body>
         <header>
             <nav>
-                <h1 id='logo'>HandGame/s</h1>
+                <a href="."><h1 id='logo'>HandGame/s</h1></a>
                 <div class="links-container">
                     <a id="github-link" href="https://github.com/jdtavarez/rps"><img id="github-logo" src="../src/images/github/GitHub-Mark-120px-plus.png" alt="GitHub Mark"></a>
                     <!-- <a href="">linkedin</a>
                     <a href="">demo mode</a> -->
                 </div>
                 <div class="game-tools">
-                    <button class="game" id="one-round" value="1">1 ROUND</button>
-                    <button class="game" id="three-round" value="3">3 ROUNDS</button>
-                    <button class="game" id="five-round" value="5">5 ROUNDS</button>
+                    <button class="game" id="start-game" value="1">Start Game</button>
                 </div>
             </nav>
-            <div class="game-util">
-                <div id="score">score</div>
+            <div class="game-util" style="opacity: 0;">
+                <div id="score-sign" style="opacity: 0;">score</div>
+                <table style="opacity: 0;" id="score-board">
+                    <tr class="player-row">
+                        <td>Player 1</td>
+                        <td>Player 2</td>
+                    </tr>
+                    <tr class="scores">
+                        <td id="player-1-score"></td>
+                        <td id="player-2-score"></td>
+                    </tr>
+                </table>
             </div>
         </header>
         <main>
@@ -52,22 +60,22 @@
                         <h3 class="hand-graphic-list-heading">how-to play</h3>
                     </li>
                     <li class="hand-graphic-list">
-                        <img src="../src/images/poses/rock_graphic.png" alt="a 3d wireframe of the rock position in rock paper scissors game" class="hand-graphic">
-                        <ul>
+                        <img src="../src/images/poses/rock_graphic.png" alt="a 3d wireframe of the rock position in rock paper scissors game" class="hand-graphic" id="rock-image">
+                        <ul id="rock-list" hidden>
                             <h3 class="hand-graphic-heading">rock</h3>
                             <li class="hand-graphic-text">Clasp fingers, pointing towards palm.</li>
                         </ul>
                     </li>
                     <li class="hand-graphic-list">
-                        <img src="../src/images/poses/paper_graphic.png"  alt="a 3d wireframe of the paper position in rock paper scissors game" class="hand-graphic">
-                        <ul>
+                        <img src="../src/images/poses/paper_graphic.png"  alt="a 3d wireframe of the paper position in rock paper scissors game" class="hand-graphic" id="paper-image">
+                        <ul id="paper-list" hidden> 
                             <h3 class="hand-graphic-heading">paper</h3>
                             <li class="hand-graphic-text"> Raise hand and point all fingers away from palm.</li>
                         </ul>
                     </li>
                     <li class="hand-graphic-list">
-                        <img src="../src/images/poses/scissors_graphic.png"  alt="a 3d wireframe of the scissors position in rock paper scissors game" class="hand-graphic"> 
-                        <ul class="hand-graphic-list-dir">
+                        <img src="../src/images/poses/scissors_graphic.png"  alt="a 3d wireframe of the scissors position in rock paper scissors game" class="hand-graphic" id="scissor-image"> 
+                        <ul id="scissor-list" hidden>
                             <h3 class="hand-graphic-heading">scissors</h3>
                             <li class="hand-graphic-text">Clasp thumb, ring, and pinky fingers.</li>
                             <li class="hand-graphic-text">Leave index and middle fingers open.</li>
