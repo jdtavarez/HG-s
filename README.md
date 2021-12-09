@@ -17,7 +17,6 @@
 * modular instructions 
 * exciting background music 
 
-
 ## Wireframe
 <img src="https://github.com/jdtavarez/HG-/blob/main/_doc/rps_wireframe.png">
 
