@@ -3,7 +3,7 @@ import { ComputerPlayer } from './computer_player';
 import { HumanPlayer } from './human_player';
 import { Game } from './game';
 
-function clickStart(e) {
+async function clickStart(e) {
     e.preventDefault();
     if (e.target.id === "start-game") {
         let elem = document.getElementById('start-game');
@@ -27,7 +27,7 @@ function clickStart(e) {
     }
 }
 
-function clickHowTo(e) {
+async function clickHowTo(e) {
     const classList = Array.from(e.target.classList);
     if (classList.includes("hand-graphic")) {
         let elem;
@@ -64,7 +64,7 @@ function clickHowTo(e) {
     }
 }
 
-function clickLink(e) {
+async function clickLink(e) {
     let gitEx = document.getElementById("github-logo")
     if (e.target.tagName === "A" || e.target === gitEx) {
         let elem;
@@ -79,7 +79,7 @@ function clickLink(e) {
     }
 }
 
-function clickRound(e) {
+async function clickRound(e) {
     const classList = Array.from(e.target.classList)
     e.preventDefault();
     let flag = false;
@@ -102,21 +102,25 @@ function clickRound(e) {
     return round;
 }
 
-function updateScore(game) {
+async function updateScore(game) {
     if (game.roundResults.at(-1) instanceof HumanPlayer) {
         let hScore = document.getElementById("player-1-score");
-        let flag = Animation.disappearAni(hScore);
-        if (flag) {
-            hScore.innerText = parseInt(hScore.innerText) + 1;
-        }
-        Animation.appearAni(hScore);
+        await Animation.disappearAni(hScore);
+        hScore.innerText = parseInt(hScore.innerText) + 1;
+        hScore.opacity = 1;
     } else if (game.roundResults.at(-1) instanceof ComputerPlayer) {
         let cScore = document.getElementById("player-2-score");
-        let flag = Animation.disappearAni(cScore);
-        if (flag) {
-            cScore.innerText = parseInt(hScore.innerText) + 1;
-        }
-        Animation.appearAni(cScore);
+        await Animation.disappearAni(cScore);
+        cScore.innerText = parseInt(cScore.innerText) + 1;
+        cScore.opacity = 1;
+    } else {
+        let score = document.getElementById("score-sign");
+        await Animation.disappearAni(score);
+        score.innerText = "draw";
+        score.style.opacity = 1;
+        await Animation.disappearAni(score);
+        score.innerText = "score";
+        score.style.opacity = 1;
     }
     return true;
 }

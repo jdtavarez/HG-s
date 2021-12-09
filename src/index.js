@@ -9,18 +9,17 @@ import { _ } from 'core-js';
 document.addEventListener("DOMContentLoaded", videoCallback);
 document.addEventListener("click", clickHowTo);
 document.addEventListener("click", clickStart);
-document.addEventListener("click", (e) => {
-    let round = clickRound(e);
+document.addEventListener("click", async (e) => {
+    let round = await clickRound(e);
     const game = new Game(round, handInfo);
     async function _game() {
-        let result = await updateScore(game);
-        let playerMoves = await game.getMoves();
+        let playerMoves = game.getMoves();
         game.judgeRound(playerMoves);
+        await updateScore(game);
         if (game.over()) {
             const body = document.getElementsByTagName("BODY")[0];
             body.removeAttribute('state');
-            console.log(game.winner());
-            console.log(game.rollUp)
+            console.log(game.winner())
         }
     }
     let i; 

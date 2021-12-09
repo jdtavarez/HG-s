@@ -32,7 +32,6 @@ class Animation {
         function _disappearAni() {
             if (elem.style.opacity <= 0) {
                 elem.remove();
-                // debugger
                 clearInterval(startAni);
             } else {
                 iValue -= .035;
@@ -42,7 +41,6 @@ class Animation {
         let startAni = setInterval(_disappearAni, 50);
         return true;
     };
-
 
     // static gameAni() {
     //     // const canvas = document.getElementById("game-ani");
