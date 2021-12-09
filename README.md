@@ -17,7 +17,7 @@
 * exciting background music 
 
 ## Wireframe
-<img src="https://github.com/jdtavarez/HG-/blob/main/_doc/rps_wireframe.png">
+<img src="https://github.com/jdtavarez/HG-/blob/main/_doc/hg-s_wireframe.png">
 
 ## Technologies, Libraries, & APIs
 * Javascript
