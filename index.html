@@ -3,8 +3,8 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="./reset.css">
-        <link rel="stylesheet" href="./index.css">
+        <link rel="stylesheet" href="./dist/reset.css">
+        <link rel="stylesheet" href="./dist/main.css">
         <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
@@ -23,7 +23,7 @@
             <nav>
                 <h1 id='logo'><a id="logo-link" href="./index.html">HandGame/s</a></h1>
                 <div class="links-container">
-                    <a id="github-link" href="https://github.com/jdtavarez/rps"><img id="github-logo" src="../src/images/github/GitHub-Mark-120px-plus.png" alt="GitHub Mark"></a>
+                    <a id="github-link" href="https://github.com/jdtavarez/rps"><img id="github-logo" src="./src/images/github/GitHub-Mark-120px-plus.png" alt="GitHub Mark"></a>
                     <!-- <a href="">linkedin</a>
                     <a href="">demo mode</a> -->
                 </div>
@@ -52,10 +52,10 @@
                 <canvas id="game-ani"></canvas>
                 <canvas id="handpose-require"></canvas>
                 <div class="card-container">
-                    <img src="../src/images/cards/blank-card.png" alt="Blank playing card." id="blank-card" class="card" hidden>
-                    <img src="../src/images/cards/rock-card.png" alt="Playing card with rock." id="rock-card" class="card" hidden>
-                    <img src="../src/images/cards/paper-card.png" alt="Playing card with paper." id="paper-card" class="card" hidden>
-                    <img src="../src/images/cards/scissor-card.png" alt="Playing card with scissors." id="scissor-card" class="card"
+                    <img src="./src/images/cards/blank-card.png" alt="Blank playing card." id="blank-card" class="card" hidden>
+                    <img src="./src/images/cards/rock-card.png" alt="Playing card with rock." id="rock-card" class="card" hidden>
+                    <img src="./src/images/cards/paper-card.png" alt="Playing card with paper." id="paper-card" class="card" hidden>
+                    <img src="./src/images/cards/scissor-card.png" alt="Playing card with scissors." id="scissor-card" class="card"
                         hidden>
                 </div>
             </section>
@@ -69,7 +69,7 @@
                         <h3 class="hand-graphic-list-heading">how-to play</h3>
                     </li>
                     <li class="hand-graphic-list">
-                        <img src="../src/images/poses/rock_graphic.png" alt="A 3d wireframe of the rock position in rock paper scissors game. Instructions: Clasp fingers, pointing towards palm." class="hand-graphic" id="rock-image">
+                        <img src="./src/images/poses/rock_graphic.png" alt="A 3d wireframe of the rock position in rock paper scissors game. Instructions: Clasp fingers, pointing towards palm." class="hand-graphic" id="rock-image">
                         <ul id="rock-list" hidden>
                             <h3 class="hand-graphic-heading">rock</h3>
                         </ul>
@@ -78,10 +78,10 @@
                         <ul id="paper-list" hidden>
                             <h3 class="hand-graphic-heading">paper</h3>
                         </ul>
-                        <img src="../src/images/poses/paper_graphic.png"  alt="A 3d wireframe of the paper position in rock paper scissors game. Instructions: Raise hand and point all fingers away from palm." class="hand-graphic" id="paper-image">
+                        <img src="./src/images/poses/paper_graphic.png"  alt="A 3d wireframe of the paper position in rock paper scissors game. Instructions: Raise hand and point all fingers away from palm." class="hand-graphic" id="paper-image">
                     </li>
                     <li class="hand-graphic-list">
-                        <img src="../src/images/poses/scissors_graphic.png"  alt="A 3d wireframe of the scissors position in rock paper scissors game. Instructions: Clasp thumb, ring, and pinky fingers. Leave index and middle fingers open." class="hand-graphic" id="scissor-image"> 
+                        <img src="./src/images/poses/scissors_graphic.png"  alt="A 3d wireframe of the scissors position in rock paper scissors game. Instructions: Clasp thumb, ring, and pinky fingers. Leave index and middle fingers open." class="hand-graphic" id="scissor-image"> 
                         <ul id="scissor-list" hidden>
                             <h3 class="hand-graphic-heading">scissors</h3>
                         </ul>
