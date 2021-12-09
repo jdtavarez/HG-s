@@ -1,6 +1,5 @@
-# <img src="https://github.com/jdtavarez/HG-s/blob/main/_doc/logo.png">
+## <img src="https://github.com/jdtavarez/HG-s/blob/main/_doc/logo.png">
 
-## Background 
 <a href="https://jdtavarez.github.io/HG-s/">HandGame/s</a> is an implementation of the popular hand-game, Rock; Paper; Scissors. Utilizing motion capture and image recognition technology, the player’s moves will be delivered via their camera; once the move has been recognized, it will be compared to the computer’s and a point will be awarded to the winner. 
 
 ## Functionality & MVPs
