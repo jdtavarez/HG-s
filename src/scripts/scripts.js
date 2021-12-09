@@ -107,20 +107,20 @@ async function updateScore(game) {
         let hScore = document.getElementById("player-1-score");
         await Animation.disappearAni(hScore);
         hScore.innerText = parseInt(hScore.innerText) + 1;
-        hScore.opacity = 1;
+        hScore.opacity = "1";
     } else if (game.roundResults.at(-1) instanceof ComputerPlayer) {
         let cScore = document.getElementById("player-2-score");
         await Animation.disappearAni(cScore);
         cScore.innerText = parseInt(cScore.innerText) + 1;
-        cScore.opacity = 1;
+        cScore.opacity = "1";
     } else {
         let score = document.getElementById("score-sign");
         await Animation.disappearAni(score);
-        score.innerText = "draw";
-        score.style.opacity = 1;
+        score.innerHTML = "draw";
+        score.style.opacity = "1";
         await Animation.disappearAni(score);
-        score.innerText = "score";
-        score.style.opacity = 1;
+        score.innerHTML = "score";
+        score.style.opacity = "1";
     }
     return true;
 }

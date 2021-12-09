@@ -19,7 +19,6 @@ document.addEventListener("click", async (e) => {
         if (game.over()) {
             const body = document.getElementsByTagName("BODY")[0];
             body.removeAttribute('state');
-            console.log(game.winner())
         }
     }
     let i; 
