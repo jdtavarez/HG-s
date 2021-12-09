@@ -1,11 +1,11 @@
-# RPS
+# HandGame/s
 
 ## Background 
-RPS is an implementation of the popular hand-game, Rock; Paper; Scissors. Utilizing motion capture and image recognition technology, the player’s moves will be delivered via their camera; once the move has been recognized, it will be compared to the computer’s and a point will be awarded to the winner. 
+HandGame/s is an implementation of the popular hand-game, Rock; Paper; Scissors. Utilizing motion capture and image recognition technology, the player’s moves will be delivered via their camera; once the move has been recognized, it will be compared to the computer’s and a point will be awarded to the winner. 
 
 ## Functionality & MVPs
 
-#### In *RPS*, users will be able to: 
+#### In *HandGame/s*, users will be able to: 
 * track their hand movements with a handpose recognition AI
 * input three different gestures, via their camera 
 * play a game of rock, paper, scissors with a computer player, whose moves will appear in an on-screen animation
