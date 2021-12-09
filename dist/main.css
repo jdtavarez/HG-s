@@ -30,6 +30,7 @@ nav {
     font-family: Nunito;
     font-weight: bold;
     font-size: 52.5px;
+    -webkit-border-radius: 750px; 
     border-radius: 750px;
     text-align: center;
     background-color: olive;
@@ -71,6 +72,7 @@ a  {
     font-weight: 400;
     font-size: medium;
     width: 102.75px;
+    -webkit-border-radius: 37.5px;
     border-radius: 37.5px;
     border: none;
     background-color: rgba(169, 169, 169, 0.364);
@@ -105,6 +107,7 @@ a  {
     min-width: 300px;
     margin-left: 45px;
     background-color: olive;
+    -webkit-border-radius: 52.5px;
     border-radius: 52.5px;
     justify-content: center;
 }
@@ -126,6 +129,7 @@ a  {
 
 td {
     font-family: Nunito;
+    -webkit-border-radius: 5px;
     border-radius: 5px;
     color: white;
     font-size: 10px;
@@ -141,6 +145,7 @@ main {
 .video-container {
     position: relative;
     width: 100%;
+    -webkit-border-radius: 75px;
     border-radius: 75px;
     overflow: hidden;
 }
@@ -214,6 +219,7 @@ p#handpose-require-text {
     background-color: rgba(169, 169, 169, 0.364);
     margin-bottom: 22.5px;
     height: 112.5px;
+    -webkit-border-radius: 32.5px;
     border-radius: 32.5px;
     display: flex;
     flex-direction: column;
@@ -254,6 +260,7 @@ i {
     height: 450px;
     display: flex;
     flex-direction: column;
+    -webkit-border-radius: 52.5px;
     border-radius: 52.5px;
     justify-content: space-around;
 }
@@ -272,6 +279,7 @@ i {
 
 .hand-graphic {
     margin-left: 7.5px;
+    -webkit-border-radius: 40px;
     border-radius: 40px;
     height: 86.25px;
     width: 86.25px;
