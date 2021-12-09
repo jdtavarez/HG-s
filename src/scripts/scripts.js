@@ -9,6 +9,8 @@ async function clickStart(e) {
         let elem = document.getElementById('start-game');
         let flag = Animation.disappearAni(elem);
         if (flag) {
+            const blankCard = getBlankCard();
+            blankCard.hidden = false;
             elem.hidden = true;
             let possibleSelections = [1, 3, 5];
             let div = document.getElementsByClassName('game-tools')[0];
@@ -22,7 +24,10 @@ async function clickStart(e) {
                 div.append(button);
             })
             let buttons = Array.from(div.children).slice(1);
-            buttons.forEach(Animation.appearAni);
+            // buttons.forEach(Animation.appearAni);
+            const body = document.getElementsByTagName("BODY")[0];
+            body.setAttribute('state', 'game-in-prog');
+            Animation.appearAni(buttons[0]);
         }
     }
 }
@@ -97,8 +102,6 @@ async function clickRound(e) {
         buttons.forEach(Animation.disappearAni);
         buttons.forEach((e) => { e.hidden = true });
     }
-    const body = document.getElementsByTagName("BODY")[0];
-    body.setAttribute('state', 'game-in-prog');
     return round;
 }
 
@@ -115,14 +118,26 @@ async function updateScore(game) {
         cScore.opacity = "1";
     } else {
         let score = document.getElementById("score-sign");
-        await Animation.disappearAni(score);
+        // await Animation.disappearAni(score);
         score.innerHTML = "draw";
-        score.style.opacity = "1";
-        await Animation.disappearAni(score);
-        score.innerHTML = "score";
-        score.style.opacity = "1";
+        // await Animation.appearAni(score);
+        // await Animation.disappearAni(score);
+        // score.innerHTML = "score";
+        // Animation.appearAni(score);
     }
     return true;
 }
 
-export { clickStart, clickHowTo, clickRound, clickLink, updateScore }
+function getCard(playerMoves) {
+    const moves = Array.from(playerMoves.keys());
+    const compMove = moves.at(-1);
+    const card = document.getElementById(`${compMove}-card`);
+    return card;
+}
+
+function getBlankCard() {
+    const card = document.getElementById('blank-card')
+    return card;
+}
+
+export { clickStart, clickHowTo, clickRound, clickLink, updateScore, getCard, getBlankCard }

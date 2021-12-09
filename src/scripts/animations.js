@@ -85,6 +85,7 @@ class Animation {
         }
         return true;
     }
+
 }
 
 export { Animation }
