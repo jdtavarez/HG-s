@@ -7,16 +7,6 @@ import { Animation } from './scripts/animations'
 import { _ } from 'core-js';
 
 document.addEventListener("DOMContentLoaded", videoCallback);
-document.addEventListener("DOMContentLoaded", (e) => {
-    let body = document.getElementById("body");
-    let status = body.getAttribute("state");
-    if (!handInfo.multiHandLandmarks[0] && status) {
-        Animation.createWarningCanvas();
-    }
-    if (handInfo.multiHandLandmarks && status) {
-        Animation.removeWarningCanvas();
-    }
-});
 document.addEventListener("click", clickHowTo);
 document.addEventListener("click", clickStart);
 document.addEventListener("click", (e) => {
@@ -27,6 +17,8 @@ document.addEventListener("click", (e) => {
         let playerMoves = await game.getMoves();
         game.judgeRound(playerMoves);
         if (game.over()) {
+            const body = document.getElementsByTagName("BODY")[0];
+            body.removeAttribute('state');
             console.log(game.winner());
             console.log(game.rollUp)
         }

@@ -21,6 +21,18 @@ function videoCallback() {
         }
         canvasCtx.restore();
         handInfo = results;
+        let body = document.getElementById("body");
+        let status = body.getAttribute("state");
+        const hCanvas = document.getElementById('handpose-require')
+        const hCtx = hCanvas.getContext('2d')
+        if (!handInfo.multiHandLandmarks[0] && status) {
+            hCtx.save();
+            Animation.createWarningCanvas();
+        }
+        if (handInfo.multiHandLandmarks[0] && status) {
+            Animation.removeWarningCanvas();
+            hCtx.save();
+        }
     };
 
     hands.onResults(onResults);

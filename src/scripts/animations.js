@@ -2,10 +2,8 @@ class Animation {
     static appearAni(elem) {
         let iValue = 0;
         function _appearAni() {
-            // const flag = true;
             if (elem.style.opacity >= 1) {
                 clearInterval(startAni);
-                // return flag;
             } else {
                 iValue += .1;
             }
@@ -18,35 +16,31 @@ class Animation {
     static disappearAni(elem) {
         let iValue = 1;
         function _disappearAni() {
-            // const flag = true;
             if (elem.style.opacity <= 0) {
                 clearInterval(startAni);
-                // return flag;
             } else {
                 iValue -= .035;
             }
             elem.style.opacity = iValue;
         }
         let startAni = setInterval(_disappearAni, 50);
-        // return startAni;
         return true;
     };
 
     static disappearAniDelete(elem) {
         let iValue = 1;
         function _disappearAni() {
-            const flag = true;
             if (elem.style.opacity <= 0) {
-                clearInterval(startAni);
                 elem.remove();
-                return flag;
+                // debugger
+                clearInterval(startAni);
             } else {
                 iValue -= .035;
             }
             elem.style.opacity = iValue;
         }
         let startAni = setInterval(_disappearAni, 50);
-        return startAni;
+        return true;
     };
 
 
@@ -85,13 +79,12 @@ class Animation {
 
     static removeWarningCanvas()  {
         const text = document.getElementById("handpose-require-text");
-        setTimeout(_removeWarningCanvas, 1375);
-        Animation.disappearAniDelete(text);
-        function  _removeWarningCanvas() {
+        if (text) {
+            text.remove();
             const bCanvas = document.getElementById("handpose-require");
             const bCtx = bCanvas.getContext("2d");
             bCtx.clearRect(0, 0, bCanvas.width, bCanvas.height);
-        };
+        }
         return true;
     }
 }
