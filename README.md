@@ -1,7 +1,7 @@
-# HandGame/s
+# <img src="https://github.com/jdtavarez/HG-s/blob/main/_doc/logo.png">
 
 ## Background 
-HandGame/s is an implementation of the popular hand-game, Rock; Paper; Scissors. Utilizing motion capture and image recognition technology, the player’s moves will be delivered via their camera; once the move has been recognized, it will be compared to the computer’s and a point will be awarded to the winner. 
+<a href="https://jdtavarez.github.io/HG-s/">HandGame/s</a> is an implementation of the popular hand-game, Rock; Paper; Scissors. Utilizing motion capture and image recognition technology, the player’s moves will be delivered via their camera; once the move has been recognized, it will be compared to the computer’s and a point will be awarded to the winner. 
 
 ## Functionality & MVPs
 
@@ -19,7 +19,7 @@ HandGame/s is an implementation of the popular hand-game, Rock; Paper; Scissors.
 
 
 ## Wireframe
-<img src="https://github.com/jdtavarez/RPS/blob/main/_doc/rps_wireframe.png">
+<img src="https://github.com/jdtavarez/HG-/blob/main/_doc/rps_wireframe.png">
 
 ## Technologies, Libraries, & APIs
 * Javascript
@@ -27,26 +27,6 @@ HandGame/s is an implementation of the popular hand-game, Rock; Paper; Scissors.
 * MediaPipe
 * Canvas
 * Webpack
-
-## Implementation Timeline
-* #### Friday & Weekend
-  * Create handpose recognition logic
-  * Test handpose capture reliability
-  * Create game logic (i.e. timing, modes, rounds, move comparisons)
-* #### Monday
-  * Create HTML skeleton
-  * Create a cohesive visual style
-  * Begin styling
-* #### Tuesday
-  * Collect necessary graphics 
-  * Create graphic animations for game
-  * Create BG music
-* #### Wednesday
-  * End-to-end testing
-  * Changes to styling
-  * Adding additional features, if possible
-* #### Thursday
-  * Edit README and Deploy
 
 ## Bonus Features 
 * Include different versions of the game (e.g. <a href="https://en.wikipedia.org/wiki/Sansukumi-ken">mushi-ken, et al.</a>)
