@@ -30,8 +30,9 @@ class Game {
     judgeRound(playerMoves) {
         const moves = Array.from(playerMoves.keys()).sort(); 
         let winningMove;
-
-        if (moves[1] === 'rock' && moves[2] === 'scissors') {
+        if (moves.includes('unsure')) {
+            winningMove = 'draw'
+        } else if (moves[1] === 'rock' && moves[2] === 'scissors') {
             winningMove = 'rock';
         } else if (moves[1] === 'paper' && moves[2] === 'rock') {
             winningMove = 'paper';
@@ -44,16 +45,15 @@ class Game {
         const roundWinner = playerMoves.get(winningMove);
         this.roundResults.push(roundWinner);
         this.rollUp.set(this.roundNum, [playerMoves, roundWinner]);
-        this.roundNum++
+        this.roundNum++;
     }
 
     winner() {
         let p1Count = 0; let p2Count = 0; let gWinner;
-
         this.roundResults.forEach((result) => {
             if (result instanceof HumanPlayer) {
                 p1Count++;
-            } else {
+            } else if (result instanceof ComputerPlayer) {
                 p2Count++;
             }
         })

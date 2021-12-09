@@ -1,4 +1,7 @@
 import { Animation } from './animations'
+import { ComputerPlayer } from './computer_player';
+import { HumanPlayer } from './human_player';
+import { Game } from './game';
 
 function clickStart(e) {
     e.preventDefault();
@@ -26,7 +29,6 @@ function clickStart(e) {
 
 function clickHowTo(e) {
     const classList = Array.from(e.target.classList);
-    debugger
     if (classList.includes("hand-graphic")) {
         let elem;
         let list;
@@ -62,6 +64,21 @@ function clickHowTo(e) {
     }
 }
 
+function clickLink(e) {
+    let gitEx = document.getElementById("github-logo")
+    if (e.target.tagName === "A" || e.target === gitEx) {
+        let elem;
+        if (e.target === gitEx) {
+            elem = gitEx.parentElement;
+        } else {
+            let id = e.target.id;
+            elem = document.getElementById(id);
+        }
+        let link = elem.getAttribute("HREF")
+        window.location.href = link;
+    }
+}
+
 function clickRound(e) {
     const classList = Array.from(e.target.classList)
     e.preventDefault();
@@ -78,9 +95,30 @@ function clickRound(e) {
     let buttons = Array.from(div.children).slice(1)
     if (flag) {
         buttons.forEach(Animation.disappearAni);
-        buttons.forEach((e) => {e.hidden = true});
+        buttons.forEach((e) => { e.hidden = true });
     }
+    const body = document.getElementsByTagName("BODY")[0];
+    body.setAttribute('state', 'game-in-prog');
+    return round;
 }
 
+function updateScore(game) {
+    if (game.roundResults.at(-1) instanceof HumanPlayer) {
+        let hScore = document.getElementById("player-1-score");
+        let flag = Animation.disappearAni(hScore);
+        if (flag) {
+            hScore.innerText = parseInt(hScore.innerText) + 1;
+        }
+        Animation.appearAni(hScore);
+    } else if (game.roundResults.at(-1) instanceof ComputerPlayer) {
+        let cScore = document.getElementById("player-2-score");
+        let flag = Animation.disappearAni(cScore);
+        if (flag) {
+            cScore.innerText = parseInt(hScore.innerText) + 1;
+        }
+        Animation.appearAni(cScore);
+    }
+    return true;
+}
 
-export { clickStart, clickHowTo, clickRound }
+export { clickStart, clickHowTo, clickRound, clickLink, updateScore }

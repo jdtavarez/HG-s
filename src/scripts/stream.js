@@ -1,4 +1,5 @@
 import { hands } from './hand_rec_model'
+import { Animation } from './animations'
 
 let handInfo;
 
@@ -8,16 +9,13 @@ function videoCallback() {
     canvas.height = 633.6;
     const canvasCtx = canvas.getContext('2d')
     const video = document.getElementById('stream');
-
     function onResults(results) {
         canvasCtx.save();
-        // canvasCtx.filter = "saturate(80%)";
-        // canvasCtx.filter += " brightness(200%)";
         canvasCtx.drawImage(results.image, 0, 0, canvas.width, canvas.height);
         if (results.multiHandLandmarks) {
             for (const landmarks of results.multiHandLandmarks) {
                 drawConnectors(canvasCtx, landmarks, HAND_CONNECTIONS,
-                    { color: '#FFFFFF', lineWidth: 2});
+                    { color: '#222561', lineWidth: 2});
                 drawLandmarks(canvasCtx, landmarks, { color: '#FF6347', lineWidth: 1 });
             }
         }

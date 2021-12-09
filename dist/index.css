@@ -37,13 +37,20 @@ nav {
     width: 337.5px;
 }
 
+#logo > a {
+    color: tomato;
+}
+
 a  {
     text-decoration: none;
 }
 
 #logo:hover {
-    color: white;
     background-image: linear-gradient(rgb(34, 34, 97), tomato);
+}
+
+#logo:hover > a {
+    color: white;
     cursor: pointer;
 }
 
@@ -123,6 +130,7 @@ td {
     color: white;
     font-size: 10px;
     text-align: center;
+    padding-bottom: 2px;
 }
 
 main {
@@ -137,11 +145,58 @@ main {
     overflow: hidden;
 }
 
-canvas {
+.card-container {
+    position: absolute;
+    /* left: 40px;
+    top: 40px; */
+    width: 107.25px;
+    height: 150px;
+    margin: 60px
+}
+
+.card {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+/* .card-container, .card {
+    transform: rotate(-20deg);
+    transform: rotate(-70deg);
+    transform: rotate(-140deg);
+} */
+
+#stream-overlay {
     position: absolute;
     left: -100px;
     -webkit-transform: scale(-1, 1);
     transform: scale(-1, 1);
+}
+
+#game-ani {
+    position: absolute;
+}
+
+#handpose-require {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: .25;
+}
+
+p#handpose-require-text {
+    /* background-image: linear-gradient(olive, tomato);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent; */
+    color: tomato;
+    font-size: 52px;
+    font-weight: bold;
+    font-family: Nunito;
+    align-self: center;
+    position: absolute;
+    left: calc(50% - 331.0235px);
+    top: calc(50% - 26px);
 }
 
 .side-info {
@@ -156,17 +211,36 @@ canvas {
 }
 
 #history {
+    background-color: rgba(169, 169, 169, 0.364);
     margin-bottom: 22.5px;
     height: 112.5px;
-    background-color: rgba(169, 169, 169, 0.364);
-    border-radius: 37.5px;
+    border-radius: 32.5px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 300px;
 }
 
 .history-heading { 
     margin-top: 10px;
+    margin-bottom: 7px;
+}
+
+#history > p {
+    color: olive;
+    margin-left: 15px;
+    margin-right: 15px;
+    font-size: x-small;
+    font-weight: normal;
+    text-align: justify;
+}
+
+#history > p > a {
+    color: olive;
+}
+
+i {
+    font-style: italic;
 }
 
 .hand-graphic-list-heading, .history-heading {
@@ -184,18 +258,16 @@ canvas {
     justify-content: space-around;
 }
 
-#graphics:hover {
-    background-color: rgba(169, 169, 169, 0.364);
-}
-
 #graphics > * {
     margin-right: 7.5px;
 }
 
-.hand-graphic-list {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
+#graphics:hover {
+    background-color: rgba(169, 169, 169, 0.364);
+}
+
+#graphics:hover *:not(class[hand-graphic-list-heading]) {
+    color: olive;
 }
 
 .hand-graphic {
@@ -207,13 +279,22 @@ canvas {
 
 .hand-graphic:hover {
     cursor: pointer;
-    filter: hue-rotate(-45deg) saturate(1.5);
+    filter: brightness(115%) saturate(3);
+    -webkit-transform: scale(2.3);
+    transform: scale(2.3);
+    opacity: .65;
 }
 
 .hand-graphic-list-dir {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+}
+
+.hand-graphic-list {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
 
@@ -223,13 +304,5 @@ canvas {
     text-align: center;
     font-size: 30px;
     margin-bottom: 9px;
-    font-weight: lighter;
-}
-
-.hand-graphic-text {
-    color: white;
-    font-size: 11.25px;
     font-weight: normal;
-    max-width: 180px;
-    margin-bottom: 5.25px;
 }

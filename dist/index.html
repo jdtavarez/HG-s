@@ -18,10 +18,10 @@
             href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400&family=Nunito:ital,wght@0,400;0,600;0,900;1,300;1,600;1,900&display=swap"
             rel="stylesheet">
     </head>
-    <body>
+    <body id="body">
         <header>
             <nav>
-                <a href="."><h1 id='logo'>HandGame/s</h1></a>
+                <h1 id='logo'><a id="logo-link" href="./index.html">HandGame/s</a></h1>
                 <div class="links-container">
                     <a id="github-link" href="https://github.com/jdtavarez/rps"><img id="github-logo" src="../src/images/github/GitHub-Mark-120px-plus.png" alt="GitHub Mark"></a>
                     <!-- <a href="">linkedin</a>
@@ -39,8 +39,8 @@
                         <td>Player 2</td>
                     </tr>
                     <tr class="scores">
-                        <td id="player-1-score"></td>
-                        <td id="player-2-score"></td>
+                        <td id="player-1-score">0</td>
+                        <td id="player-2-score">0</td>
                     </tr>
                 </table>
             </div>
@@ -49,41 +49,48 @@
             <section class="video-container">
                 <video autoplay hidden id="stream"></video>
                 <canvas id="stream-overlay"></canvas>
+                <canvas id="game-ani"></canvas>
+                <canvas id="handpose-require"></canvas>
+                <div class="card-container">
+                    <img src="../src/images/cards/blank-card.png" alt="Blank playing card." id="blank-card" class="card">
+                    <img src="../src/images/cards/rock-card.png" alt="Playing card with rock." id="rock-card" class="card" hidden>
+                    <img src="../src/images/cards/paper-card.png" alt="Playing card with paper." id="paper-card" class="card" hidden>
+                    <img src="../src/images/cards/scissor-card.png" alt="Playing card with scissors." id="scissor-card" class="card"
+                        hidden>
+                </div>
             </section>
             <section class="side-info">
                 <div id="history">
                     <h3 class="history-heading">history</h3>
-                    <p></p>
+                    <p>Rock, paper, scissors is an American variation of the Japanese game "Jan-ken-pon." <i>Jan-ken</i>, itself, is a popular example of a <i>sansukumi-ken</i>—a style of three-move hand-game, with origins in Ancient China. For more information click <a id="history-link" href="https://en.wikipedia.org/wiki/Sansukumi-ken">here</a>!</p>
                 </div>
                 <ul id="graphics">
                     <li class="hand-graphic-list">
                         <h3 class="hand-graphic-list-heading">how-to play</h3>
                     </li>
                     <li class="hand-graphic-list">
-                        <img src="../src/images/poses/rock_graphic.png" alt="a 3d wireframe of the rock position in rock paper scissors game" class="hand-graphic" id="rock-image">
+                        <img src="../src/images/poses/rock_graphic.png" alt="A 3d wireframe of the rock position in rock paper scissors game. Instructions: Clasp fingers, pointing towards palm." class="hand-graphic" id="rock-image">
                         <ul id="rock-list" hidden>
                             <h3 class="hand-graphic-heading">rock</h3>
-                            <li class="hand-graphic-text">Clasp fingers, pointing towards palm.</li>
                         </ul>
                     </li>
                     <li class="hand-graphic-list">
-                        <img src="../src/images/poses/paper_graphic.png"  alt="a 3d wireframe of the paper position in rock paper scissors game" class="hand-graphic" id="paper-image">
-                        <ul id="paper-list" hidden> 
+                        <ul id="paper-list" hidden>
                             <h3 class="hand-graphic-heading">paper</h3>
-                            <li class="hand-graphic-text"> Raise hand and point all fingers away from palm.</li>
                         </ul>
+                        <img src="../src/images/poses/paper_graphic.png"  alt="A 3d wireframe of the paper position in rock paper scissors game. Instructions: Raise hand and point all fingers away from palm." class="hand-graphic" id="paper-image">
                     </li>
                     <li class="hand-graphic-list">
-                        <img src="../src/images/poses/scissors_graphic.png"  alt="a 3d wireframe of the scissors position in rock paper scissors game" class="hand-graphic" id="scissor-image"> 
+                        <img src="../src/images/poses/scissors_graphic.png"  alt="A 3d wireframe of the scissors position in rock paper scissors game. Instructions: Clasp thumb, ring, and pinky fingers. Leave index and middle fingers open." class="hand-graphic" id="scissor-image"> 
                         <ul id="scissor-list" hidden>
                             <h3 class="hand-graphic-heading">scissors</h3>
-                            <li class="hand-graphic-text">Clasp thumb, ring, and pinky fingers.</li>
-                            <li class="hand-graphic-text">Leave index and middle fingers open.</li>
-                            <li class="hand-graphic-text">Alternatively, point the thumb and index, and close the other fingers.</li>
                         </ul>
                     </li>
                 </ul>
             </section>
         </main>
+        <footer>
+            <button id="newgame">newgame</button>
+        </footer>
     </body>
 </html>
