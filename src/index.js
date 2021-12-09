@@ -37,29 +37,3 @@ document.addEventListener("click", (e) => {
     }
 });
 document.addEventListener("click", clickLink);
-
-
-document.addEventListener("click", (e) => {
-    // if (e.target.id === "button") { infoCallback(e) }
-
-    if (e.target.id === 'newgame') {
-
-        let game = new Game(1, handInfo);
-        
-        let flagOne = Animation.gameAni();
-        if (flagOne) {
-            console.log(playerMoves);
-            console.log(game.winner());
-        };
-    }
-})
-
-
-// run() {
-//     while (!this.gameOver) {
-//         const playerMoves = getMoves(modelResults);
-//         this.judgeRound(playerMoves);
-//         this.keepScore(this.roundNum, playerMoves);
-//     }
-//     this.gameWinner(this.roundResults);
-// }
