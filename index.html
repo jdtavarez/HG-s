@@ -18,18 +18,18 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link
             href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400&family=Nunito:ital,wght@0,400;0,600;0,900;1,300;1,600;1,900&display=swap" rel="stylesheet">
+        <meta name="image" property="og:image" src="./src/images/hgs.png">
     </head>
     <body id="body">
         <header>
             <nav>
                 <h1 id='logo'><a id="logo-link" href="./index.html">HandGame/s</a></h1>
                 <div class="links-container">
-                    <a id="github-link" href="https://github.com/jdtavarez/rps"><img id="github-logo" src="./src/images/github/GitHub-Mark-120px-plus.png" alt="GitHub Mark"></a>
-                    <!-- <a href="">linkedin</a>
-                    <a href="">demo mode</a> -->
+                    <a rel="nofollow noopener noreferrer" class="links" href="https://github.com/jdtavarez/rps" ><img class="logolinks" src="./src/images/links/gh.png" alt="GitHub Mark" ></a>
+                    <a class="links" href="https://www.linkedin.com/in/julio-tavarez-2404a118b/"><img class="logolinks" src="./src/images/links/linked.png"></a>
                 </div>
                 <div class="game-tools">
-                    <button class="game" id="start-game" value="1">Start Game</button>
+                    <button class="game" id="start-game">Start Game</button>
                 </div>
             </nav>
             <div class="game-util" style="opacity: 0;">
@@ -63,7 +63,7 @@
             <section class="side-info">
                 <div id="history">
                     <h3 class="history-heading">history</h3>
-                    <p>Rock, paper, scissors is an American variation of the Japanese game "Jan-ken-pon." <i>Jan-ken</i>, itself, is a popular example of a <i>sansukumi-ken</i>—a style of three-move hand-game, with origins in Ancient China. For more information click <a id="history-link" href="https://en.wikipedia.org/wiki/Sansukumi-ken">here</a>!</p>
+                    <p>Rock, paper, scissors is an American variation of the Japanese game "Jan-ken-pon." <i>Jan-ken</i>, itself, is a popular example of a <i>sansukumi-ken</i>—a style of three-move hand-game, with origins in Ancient China. For more information click <a rel="nofollow noopener noreferrer" id="history-link" href="https://en.wikipedia.org/wiki/Sansukumi-ken" >here</a>!</p>
                 </div>
                 <ul id="graphics">
                     <li class="hand-graphic-list">
@@ -73,11 +73,13 @@
                         <img src="./src/images/poses/rock_graphic.png" alt="A 3d wireframe of the rock position in rock paper scissors game. Instructions: Clasp fingers, pointing towards palm." class="hand-graphic" id="rock-image">
                         <ul id="rock-list" hidden>
                             <h3 class="hand-graphic-heading">rock</h3>
+                            <p class="hand-graphic-text">Clasp fingers, pointing towards palm.</p>
                         </ul>
                     </li>
                     <li class="hand-graphic-list">
                         <ul id="paper-list" hidden>
                             <h3 class="hand-graphic-heading">paper</h3>
+                            <p class="hand-graphic-text">Raise hand and point all fingers away from palm.</p>
                         </ul>
                         <img src="./src/images/poses/paper_graphic.png"  alt="A 3d wireframe of the paper position in rock paper scissors game. Instructions: Raise hand and point all fingers away from palm." class="hand-graphic" id="paper-image">
                     </li>
@@ -85,6 +87,7 @@
                         <img src="./src/images/poses/scissors_graphic.png"  alt="A 3d wireframe of the scissors position in rock paper scissors game. Instructions: Clasp thumb, ring, and pinky fingers. Leave index and middle fingers open." class="hand-graphic" id="scissor-image"> 
                         <ul id="scissor-list" hidden>
                             <h3 class="hand-graphic-heading">scissors</h3>
+                            <p class="hand-graphic-text">Clasp thumb, ring, and pinky fingers. Leave index and middle fingers open.</p>
                         </ul>
                     </li>
                 </ul>

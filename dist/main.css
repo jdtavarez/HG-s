@@ -10,6 +10,7 @@ body {
     margin-bottom: 45px;
     margin-right: 45px;
     margin-left: 45px;
+    cursor: default;
 }
 
 header {
@@ -36,6 +37,7 @@ nav {
     background-color: olive;
     color: tomato;
     width: 337.5px;
+    transition: background-image .25s ease;
 }
 
 #logo > a {
@@ -63,7 +65,7 @@ a  {
 
 .game-tools {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     width: 337.5px;
 }
 
@@ -80,11 +82,12 @@ a  {
     height: 37.5px;
     align-self: center;
     padding: 7.5px;
+    transition: all .25s ease;
 }
 
 #start-game {
     height: 100%;
-    width: 100%;
+    width: 60%;
     position: relative;
 }
 
@@ -93,11 +96,12 @@ a  {
     align-content: center;
 }
 
-#github-link {
+.links {
     align-self: center;
+    margin: 10px;
 }
 
-#github-logo {
+.logolinks {
     height: 35px;
 }
 
@@ -153,8 +157,6 @@ main {
 
 .card-container {
     position: absolute;
-    /* left: 40px;
-    top: 40px; */
     width: 107.25px;
     height: 150px;
     margin: 60px
@@ -191,10 +193,6 @@ main {
 }
 
 p#handpose-require-text {
-    /* background-image: linear-gradient(olive, tomato);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent; */
     color: tomato;
     font-size: 52px;
     font-weight: bold;
@@ -264,6 +262,7 @@ i {
     -webkit-border-radius: 52.5px;
     border-radius: 52.5px;
     justify-content: space-around;
+    transition: all .25s ease;
 }
 
 #graphics > * {
@@ -284,20 +283,22 @@ i {
     border-radius: 40px;
     height: 86.25px;
     width: 86.25px;
+    transition: all .25s ease;
 }
 
 .hand-graphic:hover {
     cursor: pointer;
     filter: brightness(115%) saturate(3);
-    -webkit-transform: scale(2.3);
-    transform: scale(2.3);
+    -webkit-transform: scale(2.1);
+    transform: scale(2.1);
     opacity: .65;
 }
 
 .hand-graphic-list-dir {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: flex-start;
+    align-items: left;
 }
 
 .hand-graphic-list {
@@ -306,12 +307,24 @@ i {
     justify-content: space-evenly;
 }
 
-
 .hand-graphic-heading {
     color: white;
     max-width: 165px;
     text-align: center;
     font-size: 30px;
     margin-bottom: 9px;
-    font-weight: normal;
+    font-weight: 900;
+    transition: color .25s ease;
+}
+
+.hand-graphic-text {
+    margin-left: 10px;
+    color: olive;
+    font-weight: bold;
+    width: 160px;
+    font-size: 12px;
+}
+
+.links:hover, #history-link:hover {
+    cursor: pointer;
 }

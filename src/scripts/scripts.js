@@ -1,38 +1,33 @@
 import { Animation } from './animations'
 import { ComputerPlayer } from './computer_player';
 import { HumanPlayer } from './human_player';
-import { Game } from './game';
 
-async function clickStart(e) {
+function clickStart(e) {
     e.preventDefault();
     if (e.target.id === "start-game") {
         let elem = document.getElementById('start-game');
-        let flag = Animation.disappearAni(elem);
-        if (flag) {
-            const blankCard = getBlankCard();
-            blankCard.hidden = false;
-            elem.hidden = true;
-            let possibleSelections = [1, 3, 5];
-            let div = document.getElementsByClassName('game-tools')[0];
-            possibleSelections.forEach((ele) => {
-                let button = document.createElement("BUTTON");
-                button.innerText = `${ele.toString()} Round`
-                button.setAttribute("class", "game");
-                button.setAttribute("id", `${ele.toString()}-round`);
-                button.setAttribute("value", ele);
-                button.style.opacity = 0;
-                div.append(button);
-            })
-            let buttons = Array.from(div.children).slice(1);
-            // buttons.forEach(Animation.appearAni);
-            const body = document.getElementsByTagName("BODY")[0];
-            body.setAttribute('state', 'game-in-prog');
-            Animation.appearAni(buttons[0]);
-        }
+        elem.hidden = true;
+        const blankCard = getBlankCard();
+        blankCard.hidden = false;
+        let possibleSelections = [1, 3, 5];
+        let div = document.getElementsByClassName('game-tools')[0];
+        possibleSelections.forEach((ele) => {
+            let button = document.createElement("BUTTON");
+            button.innerText = `${ele.toString()} Round`
+            button.setAttribute("class", "game");
+            button.setAttribute("id", `${ele.toString()}-round`);
+            button.setAttribute("value", ele);
+            button.style.opacity = 0;
+            div.append(button);
+        })
+        let buttons = Array.from(div.children).slice(1);
+        buttons.forEach(Animation.appearAni);
+        const body = document.getElementsByTagName("BODY")[0];
+        body.setAttribute('state', 'game-in-prog');
     }
 }
 
-async function clickHowTo(e) {
+function clickHowTo(e) {
     const classList = Array.from(e.target.classList);
     if (classList.includes("hand-graphic")) {
         let elem;
@@ -69,22 +64,17 @@ async function clickHowTo(e) {
     }
 }
 
-async function clickLink(e) {
-    let gitEx = document.getElementById("github-logo")
-    if (e.target.tagName === "A" || e.target === gitEx) {
-        let elem;
-        if (e.target === gitEx) {
-            elem = gitEx.parentElement;
-        } else {
-            let id = e.target.id;
-            elem = document.getElementById(id);
-        }
-        let link = elem.getAttribute("HREF")
-        window.location.href = link;
+function clickLink(e) {
+    if (e.target.id === 'logo-link') {
+        window.location = e.target.href
+        return;
+    } else if (e.target.classList[0] === 'logolinks' ) {
+        const link = e.target.parentElement.getAttribute("HREF");
+        window.open(link);
     }
 }
 
-async function clickRound(e) {
+function clickRound(e) {
     const classList = Array.from(e.target.classList)
     e.preventDefault();
     let flag = false;
@@ -105,25 +95,20 @@ async function clickRound(e) {
     return round;
 }
 
-async function updateScore(game) {
+function updateScore(game) {
     if (game.roundResults.at(-1) instanceof HumanPlayer) {
         let hScore = document.getElementById("player-1-score");
-        await Animation.disappearAni(hScore);
+        Animation.disappearAni(hScore);
         hScore.innerText = parseInt(hScore.innerText) + 1;
         hScore.opacity = "1";
     } else if (game.roundResults.at(-1) instanceof ComputerPlayer) {
         let cScore = document.getElementById("player-2-score");
-        await Animation.disappearAni(cScore);
+        Animation.disappearAni(cScore);
         cScore.innerText = parseInt(cScore.innerText) + 1;
         cScore.opacity = "1";
     } else {
         let score = document.getElementById("score-sign");
-        // await Animation.disappearAni(score);
         score.innerHTML = "draw";
-        // await Animation.appearAni(score);
-        // await Animation.disappearAni(score);
-        // score.innerHTML = "score";
-        // Animation.appearAni(score);
     }
     return true;
 }

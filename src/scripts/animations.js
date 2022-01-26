@@ -13,13 +13,13 @@ class Animation {
         return true;
     };
 
-    static disappearAni(elem) {
+    static disappearAni(elem) { 
         let iValue = 1;
         function _disappearAni() {
             if (elem.style.opacity <= 0) {
                 clearInterval(startAni);
             } else {
-                iValue -= .035;
+                iValue -= .1;
             }
             elem.style.opacity = iValue;
         }
@@ -69,19 +69,20 @@ class Animation {
         const text = document.createElement("P");
         text.innerText = "please keep hand in frame";
         text.setAttribute('id', "handpose-require-text");
-        text.style.opacity = 0;
         videoContainer.append(text);
-        Animation.appearAni(text);
         return true;
     }
 
     static removeWarningCanvas()  {
         const text = document.getElementById("handpose-require-text");
-        if (text) {
+        if (text) { 
             text.remove();
-            const bCanvas = document.getElementById("handpose-require");
+            text.style.opacity = 0;
+            setTimeout(() => {
+                const bCanvas = document.getElementById("handpose-require");
             const bCtx = bCanvas.getContext("2d");
             bCtx.clearRect(0, 0, bCanvas.width, bCanvas.height);
+            }, 1050)
         }
         return true;
     }
