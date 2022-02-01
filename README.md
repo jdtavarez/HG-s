@@ -1,7 +1,16 @@
-## <img src="https://github.com/jdtavarez/HG-s/blob/main/_doc/logo.png">
+### <img src="https://github.com/jdtavarez/HG-s/blob/main/_doc/logo.png">
 
 <a href="https://jdtavarez.github.io/HG-s/">HandGame/s</a> is an implementation of the popular hand-game, Rock, Paper, Scissors. Utilizing a machine learning model for hand recognition, the player’s moves will be delivered via their camera. After a quick animation the user's hand position will be analyzed and compared to the computer’s selection. A point will be awarded to the winner, and the user will be asked to proceed either to the next round or to play again. 
 <br>
+
+# Technologies, Libraries, & APIs
+* Javascript
+* HTML5
+* CSS
+* TensorFlow.js
+* Canvas
+* Webpack
+
 # Screenshot
 
 ## <img src="https://github.com/jdtavarez/HG-s/blob/main/_doc/screencap.png"><br>
@@ -147,13 +156,6 @@ Lastly, the pose selector takes the booleans for finger openness, and determines
 
 };
 ```
-
-## Technologies, Libraries, & APIs
-* Javascript
-* HTML/CSS
-* MediaPipe
-* Canvas
-* Webpack
 
 ## Future Goals
 * Include different versions of the game (e.g. <a href="https://en.wikipedia.org/wiki/Sansukumi-ken">mushi-ken, et al.</a>)
