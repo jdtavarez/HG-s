@@ -1,4 +1,4 @@
-import { updateScoreBoard } from './scripts'
+import { updateScoreBoard, clickRestart } from './scripts'
 import { Animation } from './animations'
 
 function getCard(playerMoves) {
@@ -20,30 +20,41 @@ function playRound(game, handInfo) {
     game.judgeRound(playerMoves);
     updateScoreBoard(game);
     cleanUpRound(game, card);
-    return game;
 }
 
 function cleanUpRound(game, card) {
+    const readyButton = document.getElementById('ready');
+    readyButton.style.opacity = 0;
     if (!game.over()) {
-        const readyButton = document.getElementById('ready');
-        readyButton.hidden = false;
         setTimeout(() => {
             const blank = getBlankCard();
             blank.style.opacity = 0;
             blank.hidden = false;
-            Animation.appearAni(blank);    
-        }, 2000)
+            Animation.appearAni(blank);  
+            Animation.appearAni(readyButton).then(() => {
+                readyButton.hidden = false;
+            });
+            card.hidden = true;  
+        }, 2100)
     } else {
         const body = document.getElementsByTagName("BODY")[0];
-        body.removeAttribute('state')
-        console.log(game.rollUp)
+        body.removeAttribute('state');
+        readyButton.remove();
+        setTimeout(() => {
+            const restartButton = document.getElementById('start-game');
+            restartButton.innerHTML = "Play Again"
+            restartButton.style.opacity = 0;
+            restartButton.hidden = false;
+            card.hidden = true;
+            Animation.appearAni(restartButton);
+            restartButton.addEventListener("click", clickRestart)
+        }, 2100)
     }
     const winner = document.getElementById("score-sign");
     setTimeout(() => {
         Animation.disappearAni(winner)
     }, 1400)
     setTimeout(() => {
-        card.hidden = true;
         winner.innerHTML = "score";
         Animation.appearAni(winner)
     }, 2100)

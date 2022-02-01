@@ -32,6 +32,7 @@ class Game {
         // [['move', human], ['move', computer], ['draw', 'draw']]
         // sort ensures the moves are always in the same order for comparison
         // manipulating the order is OK because playerMoves is a map
+        // debugger
         const moves = [...playerMoves.keys()].sort(); 
         let winningMove;
         if (moves.includes('unsure')) {

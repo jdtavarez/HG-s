@@ -15,8 +15,8 @@ function videoCallback() {
         if (results.multiHandLandmarks) {
             for (const landmarks of results.multiHandLandmarks) {
                 drawConnectors(canvasCtx, landmarks, HAND_CONNECTIONS,
-                    { color: '#222561', lineWidth: 2});
-                drawLandmarks(canvasCtx, landmarks, { color: '#FF6347', lineWidth: 1 });
+                    { color: '#FFFFFF', lineWidth: 2});
+                drawLandmarks(canvasCtx, landmarks, { color: '#FFFFFF', lineWidth: 1 });
             }
         }
         canvasCtx.restore();

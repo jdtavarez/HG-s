@@ -1,12 +1,13 @@
 import { Handposition } from './handposition'
 class HumanPlayer {
-
-    constructor() {
-    };
-
+    
     giveMove(modelResults) {
-        const move = new Handposition(modelResults);
-        return move.pose;
+        if (modelResults.multiHandLandmarks.length !== 0) {
+            const move = new Handposition(modelResults);
+            return move.pose;
+        } else {
+            return 'unsure'
+        }
     };
 }
 

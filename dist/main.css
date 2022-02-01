@@ -71,7 +71,7 @@ a  {
 
 .game {
     font-family: Nunito;
-    font-weight: 400;
+    font-weight: 700;
     font-size: medium;
     width: 102.75px;
     -webkit-border-radius: 37.5px;
@@ -110,15 +110,14 @@ a  {
     flex-direction: column;
     min-width: 300px;
     margin-left: 45px;
-    background-color: olive;
     -webkit-border-radius: 52.5px;
     border-radius: 52.5px;
     justify-content: center;
 }
 
 #score-sign {
-    color: white;
-    font-size: 25px;
+    color: olive;
+    font-size: 30px;
     font-family: Nunito;
     font-weight: bold;
     align-self: center;
@@ -136,8 +135,9 @@ td {
     font-family: Nunito;
     -webkit-border-radius: 5px;
     border-radius: 5px;
-    color: white;
-    font-size: 10px;
+    color: olive;
+    font-size: 12px;
+    font-weight: 600;
     text-align: center;
     padding-bottom: 2px;
 }
