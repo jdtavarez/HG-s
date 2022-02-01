@@ -20,24 +20,33 @@ function playRound(game, handInfo) {
     game.judgeRound(playerMoves);
     updateScoreBoard(game);
     cleanUpRound(game, card);
+    return game;
 }
 
 function cleanUpRound(game, card) {
-    console.log(game.over())
     if (!game.over()) {
+        const readyButton = document.getElementById('ready');
+        readyButton.hidden = false;
         setTimeout(() => {
-            const winner = document.getElementById("score-sign");
-            winner.opacity = 0;
-            winner.innerHTML = "score";
-            winner.opacity = 1;
-            card.hidden = true;
-            getBlankCard().hidden = false;
+            const blank = getBlankCard();
+            blank.style.opacity = 0;
+            blank.hidden = false;
+            Animation.appearAni(blank);    
         }, 2000)
     } else {
         const body = document.getElementsByTagName("BODY")[0];
         body.removeAttribute('state')
         console.log(game.rollUp)
     }
+    const winner = document.getElementById("score-sign");
+    setTimeout(() => {
+        Animation.disappearAni(winner)
+    }, 1400)
+    setTimeout(() => {
+        card.hidden = true;
+        winner.innerHTML = "score";
+        Animation.appearAni(winner)
+    }, 2100)
 }
 
 export { getBlankCard, playRound }

@@ -20,6 +20,7 @@ class Game {
     getMoves(handInfo) {
         let moves = new Map();
         moves.set('draw', 'draw');
+        moves.set('unrecognized', 'unrecognized')
         this.players.forEach((player) => {
             moves.set(player.giveMove(handInfo), player);
         })
@@ -33,10 +34,14 @@ class Game {
         // manipulating the order is OK because playerMoves is a map
         const moves = [...playerMoves.keys()].sort(); 
         let winningMove;
-        // if (moves.includes('unsure')) {
-        //     winningMove = 'draw'
-        // } else 
-        if (moves[1] === 'rock' && moves[2] === 'scissors') {
+        if (moves.includes('unsure')) {
+            // rollUp is source of truth for game results
+            // returning before incrementing roundNum keeps game going 
+            winningMove = 'unrecognized'
+            const roundWinner = playerMoves.get(winningMove);
+            this.roundResults.push(roundWinner);
+            return;
+        } else if (moves[1] === 'rock' && moves[2] === 'scissors') {
             winningMove = 'rock';
         } else if (moves[1] === 'paper' && moves[2] === 'rock') {
             winningMove = 'paper';

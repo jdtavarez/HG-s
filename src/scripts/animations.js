@@ -7,13 +7,13 @@ class Animation {
             function _appearAni() {
                 if (elem.style.opacity >= 1) {
                     clearInterval(startAni);
+                    resolve(true);
                 } else {
-                    iValue += .1;
+                    iValue += .175;
                 }
                 elem.style.opacity = iValue;
             }
             let startAni = setInterval(_appearAni, 50);
-            resolve(true);
         });
     };
 
@@ -23,13 +23,13 @@ class Animation {
             function _disappearAni() {
                 if (elem.style.opacity <= 0) {
                     clearInterval(startAni);
+                    resolve(true);
                 } else {
-                    iValue -= .1;
+                    iValue -= .175;
                 }
                 elem.style.opacity = iValue;
             }
             let startAni = setInterval(_disappearAni, 50);
-            resolve(true);
         });
     };
 
@@ -40,13 +40,13 @@ class Animation {
                 if (elem.style.opacity <= 0) {
                     elem.remove();
                     clearInterval(startAni);
+                    resolve(true);
                 } else {
                     iValue -= .1;
                 }
                 elem.style.opacity = iValue;
             }
             let startAni = setInterval(_disappearAni, 50);
-            resolve(true);
         });
     };
 
@@ -68,8 +68,8 @@ class Animation {
             setTimeout(() => {
                 blankCard.hidden = true
                 blankCard.setAttribute('class', 'card')
+                resolve(true)
             }, 4500)
-            resolve(true)
         }) 
     }
 

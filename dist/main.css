@@ -166,30 +166,24 @@ main {
     position: absolute;
     width: 100%;
     height: 100%;
-    transition: all .35s ease;
+    transition: all .35s ease-in-out;
 }
 
 .card.rock {
-    transform: rotate(-35deg) scale(1.25);
+    transform: rotate(-35deg) scale(1.3);
 }
 
 .card.paper {
-    transform: rotate(-140deg) scale(1.5);
+    transform: rotate(-140deg) scale(1.6);
 }
 
 .card.scissors {
-    transform: rotate(-280deg) scale(1.75);
+    transform: rotate(-280deg) scale(1.9);
 }
 
 .card.shoot {
     transform: rotate(-360deg) scale(1);
 }
-
-/* .card-container, .card {
-    transform: rotate(-20deg);
-    
-    
-} */
 
 #stream-overlay {
     position: absolute;

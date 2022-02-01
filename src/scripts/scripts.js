@@ -4,6 +4,8 @@ import { HumanPlayer } from './human_player'
 import { ComputerPlayer } from './computer_player'
 import { handInfo } from './stream'
 
+export let updatedGameState;
+
 function clickStart(e) {
     e.preventDefault();
     if (e.target.id === "start-game") {
@@ -73,9 +75,10 @@ function clickLink(e) {
 }
 
 function clickRound(e) {
+    e.preventDefault();
+    e.stopImmediatePropagation();
     if (e.target.id === 'ready') return
     const classList = Array.from(e.target.classList)
-    e.preventDefault();
     let round;
     if (classList.includes("game") && e.target.id != "start-game") {
         const body = document.getElementsByTagName("BODY")[0];
@@ -88,7 +91,7 @@ function clickRound(e) {
         [scoreboard, ...elems].forEach(Animation.appearAni);
         const div = document.getElementsByClassName('game-tools')[0];
         const buttons = Array.from(div.children).slice(1);
-        buttons.forEach(button => button.opacity = 0);
+        buttons.forEach(button => button.style.opacity = 0);
         buttons.forEach((e) => { e.hidden = true });
         const button = document.createElement("BUTTON");
         button.innerText = `Ready?`
@@ -101,39 +104,44 @@ function clickRound(e) {
 
 function clickReady(e, game) {
     e.preventDefault();
+    e.stopImmediatePropagation();
     const text = document.getElementById("handpose-require-text");
     if (text || e.target.id !== 'ready') {
-        e.stopImmediatePropagation();
         return;
     } else {
         e.target.hidden = true;
         Animation.gameAni();
         setTimeout(() => {
-            playRound(game, handInfo)
+            updatedGameState = playRound(game, handInfo);
         }, 4500)
     }
 }
 
 function updateScoreBoard(game) {
     const winner = document.getElementById("score-sign");
-    winner.opacity = 0;
-    if (game.roundResults.at(-1) instanceof HumanPlayer) {
+    winner.style.opacity = 0;
+    
+    if (game.roundResults.at(-1) === 'unrecognized') {
+        winner.innerHTML = "unsure try again"
+        winner.style.opacity = 1;
+    }
+    else if (game.roundResults.at(-1) instanceof HumanPlayer) {
         winner.innerHTML = "you win";
-        winner.opacity = 1;
+        winner.style.opacity = 1;
         let hScore = document.getElementById("player-1-score");
-        hScore.opacity = 0;
+        hScore.style.opacity = 0;
         hScore.innerText = parseInt(hScore.innerText) + 1;
-        hScore.opacity = 1;
+        hScore.style.opacity = 1;
     } else if (game.roundResults.at(-1) instanceof ComputerPlayer) {
         winner.innerHTML = "you lose";
-        winner.opacity = 1;
+        winner.style.opacity = 1;
         let cScore = document.getElementById("player-2-score");
-        cScore.opacity = 0;
+        cScore.style.opacity = 0;
         cScore.innerText = parseInt(cScore.innerText) + 1;
-        cScore.opacity = 1;
+        cScore.style.opacity = 1;
     } else {
         winner.innerHTML = "draw";
-        winner.opacity = 1;
+        winner.style.opacity = 1;
     }
 }
 export { clickStart, clickHowTo, clickRound, clickLink, clickReady, updateScoreBoard } 
