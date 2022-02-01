@@ -72,7 +72,7 @@ a  {
 .game {
     font-family: Nunito;
     font-weight: 700;
-    font-size: medium;
+    font-size: 18px;
     width: 102.75px;
     -webkit-border-radius: 37.5px;
     border-radius: 37.5px;
@@ -129,12 +129,28 @@ a  {
     width: 75%;
     align-self: center;
     margin-bottom: 5px;
+    text-align: center;
+}
+
+tr {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.player {
+    width: 50%;
+}
+
+.computer {
+    width: 50%;
+}
+
+#player-1-score, #player-2-score {
+    width: 50%;
 }
 
 td {
     font-family: Nunito;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
     color: olive;
     font-size: 12px;
     font-weight: 600;
