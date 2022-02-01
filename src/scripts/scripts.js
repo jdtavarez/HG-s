@@ -105,16 +105,19 @@ function clickRound(e) {
 function clickReady(e, game) {
     e.preventDefault();
     e.stopImmediatePropagation();
-    const text = document.getElementById("handpose-require-text");
-    if (text || e.target.id !== 'ready') {
-        return;
-    } else {
-        e.target.hidden = true;
-        Animation.gameAni();
-        setTimeout(() => {
-            updatedGameState = playRound(game, handInfo);
-        }, 4500)
-    }
+    // add setTimeout to unsure one hand is fine to play
+    setTimeout(() => {
+        const text = document.getElementById("handpose-require-text");
+        if (text || e.target.id !== 'ready') {
+            return;
+        } else {
+            e.target.hidden = true;
+            Animation.gameAni();
+            setTimeout(() => {
+                updatedGameState = playRound(game, handInfo);
+            }, 4500)
+        }
+    }, 500)
 }
 
 function updateScoreBoard(game) {
