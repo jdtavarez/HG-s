@@ -1,25 +1,5 @@
-function updateScore(game) {
-    if (game.roundResults.at(-1) instanceof HumanPlayer) {
-        let hScore = document.getElementById("player-1-score");
-        await Animation.disappearAni(hScore);
-        hScore.innerText = parseInt(hScore.innerText) + 1;
-        hScore.opacity = "1";
-    } else if (game.roundResults.at(-1) instanceof ComputerPlayer) {
-        let cScore = document.getElementById("player-2-score");
-        await Animation.disappearAni(cScore);
-        cScore.innerText = parseInt(cScore.innerText) + 1;
-        cScore.opacity = "1";
-    } else {
-        let score = document.getElementById("score-sign");
-        // await Animation.disappearAni(score);
-        score.innerHTML = "draw";
-        // await Animation.appearAni(score);
-        // await Animation.disappearAni(score);
-        // score.innerHTML = "score";
-        // Animation.appearAni(score);
-    }
-    return true;
-}
+import { updateScoreBoard } from './scripts'
+import { Animation } from './animations'
 
 function getCard(playerMoves) {
     const moves = Array.from(playerMoves.keys());
@@ -32,3 +12,32 @@ function getBlankCard() {
     const card = document.getElementById('blank-card')
     return card;
 }
+
+function playRound(game, handInfo) {
+    let playerMoves = game.getMoves(handInfo);
+    const card = getCard(playerMoves);
+    card.hidden = false;
+    game.judgeRound(playerMoves);
+    updateScoreBoard(game);
+    cleanUpRound(game, card);
+}
+
+function cleanUpRound(game, card) {
+    console.log(game.over())
+    if (!game.over()) {
+        setTimeout(() => {
+            const winner = document.getElementById("score-sign");
+            winner.opacity = 0;
+            winner.innerHTML = "score";
+            winner.opacity = 1;
+            card.hidden = true;
+            getBlankCard().hidden = false;
+        }, 2000)
+    } else {
+        const body = document.getElementsByTagName("BODY")[0];
+        body.removeAttribute('state')
+        console.log(game.rollUp)
+    }
+}
+
+export { getBlankCard, playRound }

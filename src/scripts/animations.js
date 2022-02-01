@@ -1,71 +1,82 @@
+import { getBlankCard } from './game_helpers'
+
 class Animation {
     static appearAni(elem) {
-        let iValue = 0;
-        function _appearAni() {
-            if (elem.style.opacity >= 1) {
-                clearInterval(startAni);
-            } else {
-                iValue += .1;
+        return new Promise((resolve) => {
+            let iValue = 0;
+            function _appearAni() {
+                if (elem.style.opacity >= 1) {
+                    clearInterval(startAni);
+                } else {
+                    iValue += .1;
+                }
+                elem.style.opacity = iValue;
             }
-            elem.style.opacity = iValue;
-        }
-        let startAni = setInterval(_appearAni, 50);
-        return true;
+            let startAni = setInterval(_appearAni, 50);
+            resolve(true);
+        });
     };
 
-    static disappearAni(elem) { 
-        let iValue = 1;
-        function _disappearAni() {
-            if (elem.style.opacity <= 0) {
-                clearInterval(startAni);
-            } else {
-                iValue -= .1;
+    static disappearAni(elem) {
+        return new Promise((resolve) => {
+            let iValue = 1;
+            function _disappearAni() {
+                if (elem.style.opacity <= 0) {
+                    clearInterval(startAni);
+                } else {
+                    iValue -= .1;
+                }
+                elem.style.opacity = iValue;
             }
-            elem.style.opacity = iValue;
-        }
-        let startAni = setInterval(_disappearAni, 50);
-        return true;
+            let startAni = setInterval(_disappearAni, 50);
+            resolve(true);
+        });
     };
 
     static disappearAniDelete(elem) {
-        let iValue = 1;
-        function _disappearAni() {
-            if (elem.style.opacity <= 0) {
-                elem.remove();
-                clearInterval(startAni);
-            } else {
-                iValue -= .035;
+        return new Promise((resolve) => {
+            let iValue = 1;
+            function _disappearAni() {
+                if (elem.style.opacity <= 0) {
+                    elem.remove();
+                    clearInterval(startAni);
+                } else {
+                    iValue -= .1;
+                }
+                elem.style.opacity = iValue;
             }
-            elem.style.opacity = iValue;
-        }
-        let startAni = setInterval(_disappearAni, 50);
-        return true;
+            let startAni = setInterval(_disappearAni, 50);
+            resolve(true);
+        });
     };
 
-    // static gameAni() {
-    //     // const canvas = document.getElementById("game-ani");
-    //     // canvas.width = 1126.4;
-    //     // canvas.height = 633.6;
-    //     // const canvasCtx = canvas.getContext("2d");
-    //     // let words = ['ROCK', 'PAPER', 'SCISSORS', 'SHOOT'];
-    //     const img = document.getElementById("blank-card");
-
-    //     // canvasCtx.drawImage(img, 40, 40, 107.25, 150);
-    //     // setTimeout(canvasCtx.clearRect(0, 0, canvas.width, canvas.height), 10000);
-    //     return true;
-    // }
+    static gameAni() {
+        const blankCard = getBlankCard();
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                blankCard.setAttribute('class', 'card rock')
+            }, 500)
+            setTimeout(() => {
+                blankCard.setAttribute('class', 'card paper')
+            }, 1500)
+            setTimeout(() => {
+                blankCard.setAttribute('class', 'card scissors')
+            }, 2500)
+            setTimeout(() => {
+                blankCard.setAttribute('class', 'card shoot')
+            }, 3500)
+            setTimeout(() => {
+                blankCard.hidden = true
+                blankCard.setAttribute('class', 'card')
+            }, 4500)
+            resolve(true)
+        }) 
+    }
 
     static createWarningCanvas() {
-        const bCanvas = document.getElementById("handpose-require");
-        const bCtx = bCanvas.getContext("2d");
-        bCtx.beginPath();
-        bCtx.rect(0, 0, bCanvas.width, bCanvas.height);
-        bCtx.fillStyle = "olive";
-        bCtx.fill();
-        bCtx.closePath();
-
+        const warningText = document.getElementById('handpose-require-text')
+        if (warningText) return
         const videoContainer = document.getElementsByClassName("video-container")[0];
-
         const text = document.createElement("P");
         text.innerText = "please keep hand in frame";
         text.setAttribute('id', "handpose-require-text");
@@ -76,13 +87,8 @@ class Animation {
     static removeWarningCanvas()  {
         const text = document.getElementById("handpose-require-text");
         if (text) { 
-            text.remove();
             text.style.opacity = 0;
-            setTimeout(() => {
-                const bCanvas = document.getElementById("handpose-require");
-            const bCtx = bCanvas.getContext("2d");
-            bCtx.clearRect(0, 0, bCanvas.width, bCanvas.height);
-            }, 1050)
+            text.remove();
         }
         return true;
     }

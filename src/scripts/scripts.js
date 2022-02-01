@@ -1,14 +1,14 @@
 import { Animation } from './animations'
-import { ComputerPlayer } from './computer_player';
-import { HumanPlayer } from './human_player';
+import { getBlankCard, playRound, roundPlay } from './game_helpers'
+import { HumanPlayer } from './human_player'
+import { ComputerPlayer } from './computer_player'
+import { handInfo } from './stream'
 
 function clickStart(e) {
     e.preventDefault();
     if (e.target.id === "start-game") {
         let elem = document.getElementById('start-game');
         elem.hidden = true;
-        const blankCard = getBlankCard();
-        blankCard.hidden = false;
         let possibleSelections = [1, 3, 5];
         let div = document.getElementsByClassName('game-tools')[0];
         possibleSelections.forEach((ele) => {
@@ -22,8 +22,6 @@ function clickStart(e) {
         })
         let buttons = Array.from(div.children).slice(1);
         buttons.forEach(Animation.appearAni);
-        const body = document.getElementsByTagName("BODY")[0];
-        body.setAttribute('state', 'game-in-prog');
     }
 }
 
@@ -75,54 +73,67 @@ function clickLink(e) {
 }
 
 function clickRound(e) {
+    if (e.target.id === 'ready') return
     const classList = Array.from(e.target.classList)
     e.preventDefault();
-    let flag = false;
     let round;
     if (classList.includes("game") && e.target.id != "start-game") {
+        const body = document.getElementsByTagName("BODY")[0];
+        body.setAttribute('state', 'game-in-prog');
+        const blankCard = getBlankCard();
+        blankCard.hidden = false;
         round = parseInt(e.target.value);
-        let scoreboard = document.getElementsByClassName("game-util")[0];
-        let elems = Array.from(scoreboard.children);
+        const scoreboard = document.getElementsByClassName("game-util")[0];
+        const elems = Array.from(scoreboard.children);
         [scoreboard, ...elems].forEach(Animation.appearAni);
-        flag = true;
-    };
-    let div = document.getElementsByClassName('game-tools')[0];
-    let buttons = Array.from(div.children).slice(1)
-    if (flag) {
-        buttons.forEach(Animation.disappearAni);
+        const div = document.getElementsByClassName('game-tools')[0];
+        const buttons = Array.from(div.children).slice(1);
+        buttons.forEach(button => button.opacity = 0);
         buttons.forEach((e) => { e.hidden = true });
+        const button = document.createElement("BUTTON");
+        button.innerText = `Ready?`
+        button.setAttribute("class", "game");
+        button.setAttribute("id", `ready`);
+        div.append(button);
     }
     return round;
 }
 
-function updateScore(game) {
-    if (game.roundResults.at(-1) instanceof HumanPlayer) {
-        let hScore = document.getElementById("player-1-score");
-        Animation.disappearAni(hScore);
-        hScore.innerText = parseInt(hScore.innerText) + 1;
-        hScore.opacity = "1";
-    } else if (game.roundResults.at(-1) instanceof ComputerPlayer) {
-        let cScore = document.getElementById("player-2-score");
-        Animation.disappearAni(cScore);
-        cScore.innerText = parseInt(cScore.innerText) + 1;
-        cScore.opacity = "1";
+function clickReady(e, game) {
+    e.preventDefault();
+    const text = document.getElementById("handpose-require-text");
+    if (text || e.target.id !== 'ready') {
+        e.stopImmediatePropagation();
+        return;
     } else {
-        let score = document.getElementById("score-sign");
-        score.innerHTML = "draw";
+        e.target.hidden = true;
+        Animation.gameAni();
+        setTimeout(() => {
+            playRound(game, handInfo)
+        }, 4500)
     }
-    return true;
 }
 
-function getCard(playerMoves) {
-    const moves = Array.from(playerMoves.keys());
-    const compMove = moves.at(-1);
-    const card = document.getElementById(`${compMove}-card`);
-    return card;
+function updateScoreBoard(game) {
+    const winner = document.getElementById("score-sign");
+    winner.opacity = 0;
+    if (game.roundResults.at(-1) instanceof HumanPlayer) {
+        winner.innerHTML = "you win";
+        winner.opacity = 1;
+        let hScore = document.getElementById("player-1-score");
+        hScore.opacity = 0;
+        hScore.innerText = parseInt(hScore.innerText) + 1;
+        hScore.opacity = 1;
+    } else if (game.roundResults.at(-1) instanceof ComputerPlayer) {
+        winner.innerHTML = "you lose";
+        winner.opacity = 1;
+        let cScore = document.getElementById("player-2-score");
+        cScore.opacity = 0;
+        cScore.innerText = parseInt(cScore.innerText) + 1;
+        cScore.opacity = 1;
+    } else {
+        winner.innerHTML = "draw";
+        winner.opacity = 1;
+    }
 }
-
-function getBlankCard() {
-    const card = document.getElementById('blank-card')
-    return card;
-}
-
-export { clickStart, clickHowTo, clickRound, clickLink, updateScore, getCard, getBlankCard }
+export { clickStart, clickHowTo, clickRound, clickLink, clickReady, updateScoreBoard } 

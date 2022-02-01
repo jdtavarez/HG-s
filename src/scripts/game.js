@@ -2,11 +2,10 @@ import { HumanPlayer } from './human_player'
 import { ComputerPlayer } from './computer_player'
 
 class Game {
-    constructor(rounds, modelResults) {
+    constructor(rounds) {
         this.totalRounds = rounds;
         this.roundResults = [];
-        
-        this.handInfo = modelResults;
+    
         this.roundNum = 1;
 
         const p1 = new HumanPlayer(); 
@@ -18,21 +17,26 @@ class Game {
         this.getMoves.bind(this);
     }
 
-    getMoves() {
+    getMoves(handInfo) {
         let moves = new Map();
         moves.set('draw', 'draw');
         this.players.forEach((player) => {
-            moves.set(player.giveMove(this.handInfo), player);
+            moves.set(player.giveMove(handInfo), player);
         })
         return moves;
     }
 
     judgeRound(playerMoves) {
-        const moves = Array.from(playerMoves.keys()).sort(); 
+        // playerMoves is a map of the form 
+        // [['move', human], ['move', computer], ['draw', 'draw']]
+        // sort ensures the moves are always in the same order for comparison
+        // manipulating the order is OK because playerMoves is a map
+        const moves = [...playerMoves.keys()].sort(); 
         let winningMove;
-        if (moves.includes('unsure')) {
-            winningMove = 'draw'
-        } else if (moves[1] === 'rock' && moves[2] === 'scissors') {
+        // if (moves.includes('unsure')) {
+        //     winningMove = 'draw'
+        // } else 
+        if (moves[1] === 'rock' && moves[2] === 'scissors') {
             winningMove = 'rock';
         } else if (moves[1] === 'paper' && moves[2] === 'rock') {
             winningMove = 'paper';
@@ -68,7 +72,9 @@ class Game {
         return gWinner;
     }
 
-    over = () => this.roundNum >= this.totalRounds
+    over() {
+        return this.roundNum > this.totalRounds
+    }
 }
 
 export { Game }
