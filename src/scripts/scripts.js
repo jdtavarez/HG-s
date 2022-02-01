@@ -67,7 +67,7 @@ function clickLink(e) {
     if (e.target.id === 'logo-link') {
         window.location = e.target.href
         return;
-    } else if (e.target.classList[0] === 'logolinks' ) {
+    } else if (e.target.classList[0] === 'logolinks' || e.target.id === 'history-link' ) {
         const link = e.target.parentElement.getAttribute("HREF");
         window.open(link);
         return;
