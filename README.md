@@ -84,7 +84,7 @@ The fingersIsOpen function uses the points on the graphic above to represent the
                 fifthDistal
             );
 
-            // trial and error value :(
+            // trial and error value
             const openBool = fifthAngle > 2.7;
             
             return openBool;
