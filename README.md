@@ -1,13 +1,13 @@
 ## <img src="https://github.com/jdtavarez/HG-s/blob/main/_doc/logo.png">
-<br>
+
 <a href="https://jdtavarez.github.io/HG-s/">HandGame/s</a> is an implementation of the popular hand-game, Rock, Paper, Scissors. Utilizing a machine learning model for hand recognition, the player’s moves will be delivered via their camera. After a quick animation the user's hand position will be analyzed and compared to the computer’s selection. A point will be awarded to the winner, and the user will be asked to proceed either to the next round or to play again. 
-
-## Screenshot
 <br>
-## <img src="https://github.com/jdtavarez/HG-s/blob/main/_doc/screencap.png">
+# Screenshot
 
-## Code Snippets
-<br>
+## <img src="https://github.com/jdtavarez/HG-s/blob/main/_doc/screencap.png"><br>
+
+# Code Snippets
+
 The handposition class is central to the functionality of the game. At the moment of evaluation, the user's hand position data will be fed from the TensorFlow model into the class, and analyzed. Because the in-game camera is mirrored, the handed tag from the model is flipped; this is essential to evaluating the thumb's position, as it's frequently orthogonal to the rest of one's hand.
 ```javascript
 class Handposition {
@@ -26,7 +26,7 @@ class Handposition {
         this.pose = this.poseSelector();
     };
 ```
-<br>
+
 The handAxis function determines the optimal axis for evaluating the user's pose. If the distance between the palm and tip of the second finger is longest in any particular axis, the other fingers should follow suit. Because the pose determination comes from an analysis of the openness or closedness of each finger, it's important to use the axis with the greatest distance.
 ```javascript
     // hand position will determine conditions for evaulating overall pose
@@ -45,10 +45,10 @@ The handAxis function determines the optimal axis for evaluating the user's pose
         return axisDistances.get(maxDistance);
     };
 ```
-<br>
-## <img src="https://github.com/jdtavarez/HG-s/blob/main/_doc/02-landmarks.jpg">
-<br>
-The fingersIsOpen functions uses the points on the graphic above to represent the fingers. 
+
+### <img src="https://github.com/jdtavarez/HG-s/blob/main/_doc/02-landmarks.jpg">
+
+The fingersIsOpen function uses the points on the graphic above to represent the fingers. 
 ```javascript 
     fingersIsOpen() {
         const hand = this;
@@ -108,7 +108,7 @@ The fingersIsOpen functions uses the points on the graphic above to represent th
         })
     };
 ```
-<br>
+
 Lastly, the pose selector takes the booleans for finger openness, and determines which pose the user has submitted–rock, paper, or scissors.
 ```javascript 
     poseSelector() {
